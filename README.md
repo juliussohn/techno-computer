@@ -31,7 +31,7 @@ After running this you can include them in your HTML:
 ```
 
 ###Build
-To get your site ready for production run this command, to minify your css. This will also run `gulp bower-files`, to make sure all bower plugins are available.
+To get your site ready for production run this command to minify your css. This will also run `gulp bower-files`, to make sure all bower plugins are available.
 ```
 gulp build
 ```
