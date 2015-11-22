@@ -1,0 +1,20 @@
+{
+  "name": "name",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Julius Sohn <juliussohn@icloud.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
