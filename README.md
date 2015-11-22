@@ -25,7 +25,7 @@ If you installed any bower components via `bower install ...` you can run the fo
 ```
 gulp bower-files
 ```
-After running this you can include them in your HTML:
+After that you can include them in your HTML:
 ```html
 <script src="/js/vendor/your-plugin.js"></script>
 ```
