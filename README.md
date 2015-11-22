@@ -16,7 +16,7 @@ gulp
 This will ...
 * start a **local server** on port 8000 that points to the `www` directory
 * **watch all scss** files for changes and **compile them to css** (`www/css/`)
-* active **livereload** for you project.
+* activate **livereload** for you project.
  * If you change an HTML file, the page will reload. 
  * If you changed the scss, only the css will reload (so you wont get a complete page reload!)
  
