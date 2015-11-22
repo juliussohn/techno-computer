@@ -1,4 +1,4 @@
-# Web Project Boilertplate
+# Web project boilerplate
 This is my basic boilerplate for web Projects
 
 ## Install
