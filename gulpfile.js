@@ -66,7 +66,7 @@ gulp.task('css:autoprefix', function () {
 
 gulp.task("bower-files", function(){
     gulp.src(mainBowerFiles())
-      .pipe(uglify())
+      //.pipe(uglify())
       .pipe(gulp.dest("./www/js/vendor"));
 });
 

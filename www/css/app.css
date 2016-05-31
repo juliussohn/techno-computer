@@ -1,6 +1,15 @@
 body {
-  background: black; }
+  background: black;
+  color: white;
+  font-family: "GT Walsheim";
+  text-align: center; }
 
 a {
   -webkit-user-select: none !important;
   color: red; }
+
+h1 {
+  font-size: 100px;
+  text-align: center;
+  margin: 0;
+  margin-top: 25%; }

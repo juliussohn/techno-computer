@@ -1,5 +1,6 @@
+ var socket = io();
 var app = angular.module('keyframer',['ui.router','hmTouchEvents']);
-	
+
 
 app.config(function( $urlRouterProvider, $stateProvider){
 	//$locationProvider.html5Mode(true);
@@ -7,8 +8,8 @@ app.config(function( $urlRouterProvider, $stateProvider){
 
             .state('home', {
             	url:'/',
-                templateUrl : 'templates/recorder.html',
-                controller  : 'recorderController'
+                templateUrl : 'templates/preview.html',
+                controller  : 'playerController'
             })
             .state('recorder', {
             	url:'/recorder',
