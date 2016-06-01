@@ -55,6 +55,9 @@ h1{
 		box-shadow: inset 0px 1px 9px 0px rgba(0,0,0,0.77);
 		border-radius: 4px;
 		position: relative;
+		&:hover{
+			background-color: #414040;
+		}
 
 			&:after{
 				content:'';
