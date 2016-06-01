@@ -1,8 +1,17 @@
+@font-face {
+  font-family: "DroneRangerOblique";
+  src: url("/fonts/DroneRangerOblique.ttf"); }
+
+* {
+  box-sizing: border-box !important; }
+
 body {
-  background: #232326;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #424242;
   color: white;
-  font-family: "GT Walsheim";
-  text-align: center; }
+  font-family: "DroneRangerOblique"; }
 
 a {
   -webkit-user-select: none !important;
@@ -14,50 +23,170 @@ h1 {
   margin: 0;
   margin-top: 25%; }
 
-#sequencer .instrument {
-  margin-bottom: 10px;
-  display: flex; }
-  #sequencer .instrument.kick .step.active {
-    background: #6DA9FF; }
-  #sequencer .instrument.snare .step.active {
-    background: #916ce9; }
-
-#sequencer .icon {
-  width: 40px; }
-
-#sequencer .steps {
+#effects {
+  height: 100%;
+  width: 20%;
   display: flex;
-  width: 100%; }
-
-#sequencer .step {
-  padding-top: 11.5%;
-  width: 100%;
-  margin-right: 10px;
-  border-radius: 3px;
-  background-image: linear-gradient(0deg, rgba(117, 117, 117, 0.34) 0%, #3F3F3F 100%);
-  background-color: #202020;
-  border: 1px solid #000000;
-  border: 1px solid rgba(150, 150, 150, 0.3);
-  box-shadow: inset 0px 1px 9px 0px rgba(0, 0, 0, 0.77);
-  border-radius: 4px;
-  position: relative; }
-  #sequencer .step:hover {
-    background-color: #414040; }
-  #sequencer .step:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-image: url(/img/sequencer-active.png);
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0; }
-  #sequencer .step.current:after {
-    opacity: .6; }
-  #sequencer .step.active {
-    border: 1px solid #000000;
+  flex-direction: column;
+  align-items: stretch;
+  margin-right: 16px; }
+  #effects .effect {
+    flex: 1;
+    padding: 8px 0;
+    display: flex;
+    position: relative; }
+    #effects .effect .amountBar {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      bottom: 20px;
+      width: 8px;
+      background: white;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #FBFBFB;
+      border: 1px solid #272727;
+      box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.5); }
+      #effects .effect .amountBar .amount {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background: #3881FF;
+        border: 1px solid #272727;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36); }
+  #effects .effectButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .1s;
+    color: #3f3f3f;
+    text-align: center;
+    width: 100%;
+    min-height: 100%;
+    font-size: 21px;
+    background: #EDEDED;
+    border: 2px solid #000000;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
-    border-radius: 4px; }
+    border-radius: 3px; }
+    #effects .effectButton .inner {
+      width: 100%; }
+      #effects .effectButton .inner img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 15px; }
+    #effects .effectButton .amountBar .amount {
+      background: #858585; }
+    #effects .effectButton.active {
+      background: #FF7E00;
+      border: 2px solid #000000;
+      box-shadow: 0px 0px 13px 0px #FF8400, 0px 0px 17px 16px rgba(255, 129, 0, 0.26), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.34), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24); }
+      #effects .effectButton.active .amountBar .amount {
+        background: #3881FF; }
+
+#sequencerContainer {
+  padding: 20px;
+  height: 100vh;
+  display: flex; }
+
+#sequencer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+  #sequencer .instrument {
+    position: relative;
+    padding: 8px 0;
+    flex: 1;
+    display: flex;
+    align-items: stretch; }
+    #sequencer .instrument.kick .step.active {
+      background: #6DA9FF; }
+    #sequencer .instrument.snare .step.active {
+      background: #916ce9; }
+    #sequencer .instrument.hhClosed .step.active {
+      background: #F9AA55; }
+    #sequencer .instrument.hhOpen .step.active {
+      background: #FF6DB0; }
+  #sequencer .icon {
+    width: 20%;
+    display: flex;
+    padding-right: 10px; }
+    #sequencer .icon .instrumentButton {
+      letter-spacing: 1px;
+      font-size: 14px;
+      padding: 10px 10px;
+      width: 100%;
+      min-height: 100%;
+      background: #464646;
+      border: 2px solid #000000;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+      border-radius: 4px;
+      position: relative; }
+      #sequencer .icon .instrumentButton:after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        height: 5px;
+        border-radius: 3px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+        border-radius: 14px;
+        transition: all .2s; }
+      #sequencer .icon .instrumentButton.active:after {
+        background: #74D361;
+        box-shadow: 0px 0px 2px 0px #FFFA00, 0px 0px 6px 0px #8FDD78, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24); }
+  #sequencer .steps {
+    display: flex;
+    width: 100%;
+    min-height: 100%; }
+  #sequencer .step {
+    flex: 1;
+    min-height: 100%;
+    margin-right: 8px;
+    border-radius: 3px;
+    background-image: linear-gradient(0deg, rgba(117, 117, 117, 0.34) 0%, #3F3F3F 100%);
+    background: #202020;
+    border: 1px solid rgba(150, 150, 150, 0.3);
+    box-shadow: inset 0px 1px 9px 0px rgba(0, 0, 0, 0.77);
+    border-radius: 4px;
+    position: relative; }
+    #sequencer .step:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-image: url(/img/sequencer-active.png);
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      background: rgba(255, 255, 255, 0.2); }
+    #sequencer .step.current:after {
+      opacity: .3; }
+    #sequencer .step.active {
+      border: 1px solid #000000;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+      border-radius: 4px; }
+
+.noteContainer {
+  height: 350px;
+  width: 350px;
+  margin: 0 auto;
+  position: relative; }
+  .noteContainer .segmentCircle {
+    position: absolute;
+    height: 100%;
+    left: 0; }
+  .noteContainer .tick {
+    position: absolute;
+    z-index: 99;
+    width: 46%;
+    left: 50%;
+    top: 50%;
+    margin-top: -23%;
+    margin-left: -23%; }

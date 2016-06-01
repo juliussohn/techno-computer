@@ -20,6 +20,11 @@ app.config(function( $urlRouterProvider, $stateProvider){
                 url:'/sequencer',
                 templateUrl : 'templates/step-sequencer.html',
                 controller  : 'sequencerController'
+            })
+              .state('arpeggiator', {
+                url:'/arpeggiator',
+                templateUrl : 'templates/arpeggiator.html',
+                controller  : 'arpeggiatorController'
             });
 
             $urlRouterProvider.otherwise('/');

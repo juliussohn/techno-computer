@@ -26,16 +26,28 @@ io.on('connection', function(socket){
 
 io.on('connection', function(socket){
 
-  socket.on('record', function(msg){
-     io.emit('record', msg);
+
+  socket.on('changeSequencer', function(sequence){
+    console.log("changeSequencer")
+     io.emit('changeSequencerDesktop', sequence);
 	});
-    socket.on('stopRecording', function(){
-     io.emit('stopRecordingClient');
+  
+  socket.on('changeBPM', function(bpm){
+     io.emit('changeBPMDesktop',bpm);
   });
 
-    socket.on('startRecording', function(){
-     io.emit('startRecordingClient');
+  socket.on('changedDeviceOrienation', function(orientation){
+      console.log("changedDeviceOrienation")
+     io.emit('changedDeviceOrienationDesktop',orientation);
   });
+
+   socket.on('changeFilter', function(filter){
+     io.emit('changeFilterDesktop',filter);
+  });
+
+   
+
+   
 
 
 
@@ -43,5 +55,8 @@ io.on('connection', function(socket){
 
 
 
-io.emit('record', { for: 'everyone' });
+io.emit('changeFilter', { for: 'everyone' });
+io.emit('changeSequencer', { for: 'everyone' });
+io.emit('changeBPM', { for: 'everyone' });
+io.emit('changedDeviceOrienation', { for: 'everyone' });
 

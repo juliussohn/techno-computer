@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="680px" height="683px" viewBox="0 0 680 683" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Inset Base Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#000000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#535353" offset="100%"></stop>
+        </linearGradient>
+        <path d="M241.033925,459.393427 C360.92231,459.393427 458.111048,361.419224 458.111048,240.56192 C458.111048,119.704616 360.92231,21.7304127 241.033925,21.7304127 C121.14554,21.7304127 23.9568008,119.704616 23.9568008,240.56192 C23.9568008,361.419224 121.14554,459.393427 241.033925,459.393427 Z" id="path-3"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.147418478 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="5" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feGaussianBlur stdDeviation="9.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.773012908 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1" y="-1" width="436.154247" height="439.663015">
+            <rect x="22.9568008" y="20.7304127" width="436.154247" height="439.663015" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+        <mask id="mask-7" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-3" y="-3" width="440.154247" height="443.663015">
+            <rect x="20.9568008" y="18.7304127" width="440.154247" height="443.663015" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Inset-Base-Copy" transform="translate(100.000000, 100.000000)">
+            <ellipse id="Oval-9" fill="#000000" opacity="0.399137127" filter="url(#filter-1)" cx="239.555524" cy="241.491575" rx="239.555524" ry="241.491575"></ellipse>
+            <g id="Inset-Base">
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                <use fill="#323232" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+                <use stroke="#000000" stroke-width="1" xlink:href="#path-3"></use>
+                <use stroke-opacity="0.295261549" stroke="#979797" mask="url(#mask-6)" stroke-width="2" xlink:href="#path-3"></use>
+                <use stroke-opacity="0.141191123" stroke="#979797" mask="url(#mask-7)" stroke-width="6" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>
