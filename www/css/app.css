@@ -1,5 +1,5 @@
 body {
-  background: black;
+  background: #232326;
   color: white;
   font-family: "GT Walsheim";
   text-align: center; }
@@ -13,3 +13,49 @@ h1 {
   text-align: center;
   margin: 0;
   margin-top: 25%; }
+
+#sequencer .instrument {
+  margin-bottom: 10px;
+  display: flex; }
+  #sequencer .instrument.kick .step.active {
+    background: #6DA9FF; }
+  #sequencer .instrument.snare .step.active {
+    background: #916ce9; }
+
+#sequencer .icon {
+  width: 40px; }
+
+#sequencer .steps {
+  display: flex;
+  width: 100%; }
+
+#sequencer .step {
+  padding-top: 11.5%;
+  width: 100%;
+  margin-right: 10px;
+  border-radius: 3px;
+  background-image: linear-gradient(0deg, rgba(117, 117, 117, 0.34) 0%, #3F3F3F 100%);
+  background-color: #202020;
+  border: 1px solid #000000;
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  box-shadow: inset 0px 1px 9px 0px rgba(0, 0, 0, 0.77);
+  border-radius: 4px;
+  position: relative; }
+  #sequencer .step:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/img/sequencer-active.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0; }
+  #sequencer .step.current:after {
+    opacity: .6; }
+  #sequencer .step.active {
+    border: 1px solid #000000;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+    border-radius: 4px; }

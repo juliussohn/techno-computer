@@ -15,6 +15,11 @@ app.config(function( $urlRouterProvider, $stateProvider){
             	url:'/recorder',
                 templateUrl : 'templates/recorder.html',
                 controller  : 'recorderController'
+            })
+             .state('sequencer', {
+                url:'/sequencer',
+                templateUrl : 'templates/step-sequencer.html',
+                controller  : 'sequencerController'
             });
 
             $urlRouterProvider.otherwise('/');

@@ -1,3 +1,106 @@
+ var context = new (window.AudioContext || window.webkitAudioContext);
+    function Kick(context) {
+        this.context = context;
+    };
+     
+    Kick.prototype.setup = function() {
+        this.osc = this.context.createOscillator();
+        this.gain = this.context.createGain();
+        this.osc.connect(this.gain);
+        this.gain.connect(this.context.destination)
+    };
+
+    Kick.prototype.trigger = function(time) {
+        this.setup();
+
+        this.osc.frequency.setValueAtTime(150, time);
+        this.gain.gain.setValueAtTime(1, time);
+
+        this.osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5);
+        this.gain.gain.exponentialRampToValueAtTime(0.01, time + 0.5);
+
+        this.osc.start(time);
+
+        this.osc.stop(time + 0.5);
+    };
+    var kick = new Kick(context);
+
+    function playKick(){
+        
+        var now = context.currentTime;
+        kick.trigger(now + 0.5);
+    }
+
+    function Snare(context) {
+  this.context = context;
+};
+
+Snare.prototype.setup = function() {
+  this.noise = this.context.createBufferSource();
+  this.noise.buffer = this.noiseBuffer();
+
+  var noiseFilter = this.context.createBiquadFilter();
+  noiseFilter.type = 'highpass';
+  noiseFilter.frequency.value = 1000;
+  this.noise.connect(noiseFilter);
+
+  this.noiseEnvelope = this.context.createGain();
+  noiseFilter.connect(this.noiseEnvelope);
+
+  this.noiseEnvelope.connect(this.context.destination);
+
+  this.osc = this.context.createOscillator();
+  this.osc.type = 'triangle';
+
+  this.oscEnvelope = this.context.createGain();
+  this.osc.connect(this.oscEnvelope);
+  this.oscEnvelope.connect(this.context.destination);
+};
+
+Snare.prototype.noiseBuffer = function() {
+  var bufferSize = this.context.sampleRate;
+  var buffer = this.context.createBuffer(1, bufferSize, this.context.sampleRate);
+  var output = buffer.getChannelData(0);
+
+  for (var i = 0; i < bufferSize; i++) {
+    output[i] = Math.random() * 2 - 1;
+  }
+
+  return buffer;
+};
+
+Snare.prototype.trigger = function(time) {
+  this.setup();
+
+  this.noiseEnvelope.gain.setValueAtTime(1, time);
+  this.noiseEnvelope.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
+  this.noise.start(time)
+
+  this.osc.frequency.setValueAtTime(100, time);
+  this.oscEnvelope.gain.setValueAtTime(0.7, time);
+  this.oscEnvelope.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
+  this.osc.start(time)
+
+  this.osc.stop(time + 0.2);
+  this.noise.stop(time + 0.2);
+};
+
+
+var snare = new Snare(context);
+
+    function playSnare(){
+        
+        var now = context.currentTime;
+        snare.trigger(now + 0.5);
+    }
+
+
+
+
+
+
+
+
 app.controller('recorderController', function($scope, $interval, $window) {
     $scope.recording = false;
     $scope.currentMotion = {};
@@ -140,4 +243,55 @@ app.controller('playerController', function($scope, $interval, $window) {
         }
         
     };
+});
+
+app.controller('sequencerController', function($scope, $interval, $window) {
+    var steps = 8;
+    $scope.bpm = 140;
+    $scope.currentStep = 0;
+    $scope.bpmToSeconds = function(bpm){
+        return (60000/bpm) / 4;
+    }
+    $scope.instruments ={
+        'kick':[false,false,false,false,false,false,false,false],  
+        'snare':[false,false,false,false,false,false,false,false],  
+        'hihat':[false,false,false,false,false,false,false,false],  
+        'clap':[false,false,false,false,false,false,false,false],    
+    };
+
+
+
+
+    /**
+     * [playKick description]
+     * @return {[type]} [description]
+     */
+    
+
+
+    $scope.sequencerInterval = $interval(function() {
+         console.log("play Kick 1");
+
+         if($scope.instruments.kick[$scope.currentStep]){
+             playKick();
+         }
+         if($scope.instruments.snare[$scope.currentStep]){
+             playSnare();
+         }
+        
+        if($scope.currentStep < steps -1){
+            $scope.currentStep++;
+        }else{
+            $scope.currentStep = 0;
+        }
+
+       
+
+    }, $scope.bpmToSeconds($scope.bpm));
+
+    $scope.toggleStep = function(instrument, index){
+        $scope.instruments[instrument][index] = !$scope.instruments[instrument][index];
+    };
+    
+
 });

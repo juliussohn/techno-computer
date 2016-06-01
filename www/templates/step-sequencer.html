@@ -1,0 +1,32 @@
+<div id="sequencer">
+	<div class="instrument kick">
+		<div class="icon">
+			{{currentStep}}
+		</div>
+		<div class="steps">
+			<div class="step" ng-click="toggleStep('kick',0)" ng-class="{'current':currentStep == 0, 'active':instruments.kick[0] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',1)" ng-class="{'current':currentStep == 1, 'active':instruments.kick[1] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',2)" ng-class="{'current':currentStep == 2, 'active':instruments.kick[2] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',3)" ng-class="{'current':currentStep == 3, 'active':instruments.kick[3] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',4)" ng-class="{'current':currentStep == 4, 'active':instruments.kick[4] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',5)" ng-class="{'current':currentStep == 5, 'active':instruments.kick[5] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',6)" ng-class="{'current':currentStep == 6, 'active':instruments.kick[6] == true}"></div>
+			<div class="step" ng-click="toggleStep('kick',7)" ng-class="{'current':currentStep == 7, 'active':instruments.kick[7] == true}"></div>
+		</div>
+	</div>
+	<div class="instrument snare">
+		<div class="icon">
+			{{currentStep}}
+		</div>
+		<div class="steps">
+			<div class="step" ng-click="toggleStep('snare',0)" ng-class="{'current':currentStep == 0, 'active':instruments.snare[0] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',1)" ng-class="{'current':currentStep == 1, 'active':instruments.snare[1] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',2)" ng-class="{'current':currentStep == 2, 'active':instruments.snare[2] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',3)" ng-class="{'current':currentStep == 3, 'active':instruments.snare[3] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',4)" ng-class="{'current':currentStep == 4, 'active':instruments.snare[4] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',5)" ng-class="{'current':currentStep == 5, 'active':instruments.snare[5] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',6)" ng-class="{'current':currentStep == 6, 'active':instruments.snare[6] == true}"></div>
+			<div class="step" ng-click="toggleStep('snare',7)" ng-class="{'current':currentStep == 7, 'active':instruments.snare[7] == true}"></div>
+		</div>
+	</div>
+</div>
