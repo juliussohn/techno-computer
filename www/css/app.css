@@ -90,10 +90,10 @@ h1 {
       left: 10px;
       top: 20px;
       bottom: 20px;
-      width: 8px;
+      width: 10px;
       background: white;
       overflow: hidden;
-      border-radius: 4px;
+      border-radius: 5px;
       background: #FBFBFB;
       border: 1px solid #272727;
       box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.5); }
@@ -101,14 +101,13 @@ h1 {
         width: 100%;
         position: absolute;
         bottom: 0;
-        background: #3881FF;
+        background: #858585;
         border: 1px solid #272727;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36); }
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.1); }
   #effects .effectButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all .1s;
     color: #3f3f3f;
     text-align: center;
     width: 100%;
@@ -116,22 +115,21 @@ h1 {
     font-size: 21px;
     background: #EDEDED;
     border: 2px solid #000000;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+    box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0), inset 0px 0px 8px 6px rgba(255, 255, 255, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+    transition: all .3s;
     border-radius: 3px; }
+    #effects .effectButton.active {
+      background: #FF7E00;
+      border: 2px solid #000000;
+      box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0.1), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24); }
+      #effects .effectButton.active .amountBar .amount {
+        background: #3881FF; }
     #effects .effectButton .inner {
       width: 100%; }
       #effects .effectButton .inner img {
         display: block;
         margin: 0 auto;
         margin-bottom: 15px; }
-    #effects .effectButton .amountBar .amount {
-      background: #858585; }
-    #effects .effectButton.active {
-      background: #FF7E00;
-      border: 2px solid #000000;
-      box-shadow: 0px 0px 13px 0px #FF8400, 0px 0px 17px 16px rgba(255, 129, 0, 0.26), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.34), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24); }
-      #effects .effectButton.active .amountBar .amount {
-        background: #3881FF; }
 
 #sequencerContainer {
   padding: 20px;
@@ -223,24 +221,32 @@ h1 {
       border-radius: 4px; }
 
 .noteContainer {
-  height: 350px;
-  width: 350px;
+  height: 100vh;
+  width: 100%;
   margin: 0 auto;
   top: 0;
   position: relative; }
   .noteContainer .segmentCircle {
-    margin-left: -20px;
     position: absolute;
     height: 100%;
-    left: 0; }
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
   .noteContainer .tick {
     position: absolute;
     z-index: 99;
-    width: 46%;
+    height: 44%;
     left: 50%;
     top: 50%;
-    margin-top: -23%;
-    margin-left: -23%; }
+    transform: translate(-50%, -50%);
+    max-width: 182px; }
+  .noteContainer .base {
+    max-width: 630px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 165%;
+    transform: translate(-50%, -50%); }
 
 .monitorContainer {
   display: flex;
@@ -517,11 +523,49 @@ h1 {
 
 .arpeggiatorContainer {
   height: 100vh; }
+  .arpeggiatorContainer .oscillatorTypeSelect {
+    z-index: 99;
+    position: fixed;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5px 0; }
+    .arpeggiatorContainer .oscillatorTypeSelect .selectButton {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      color: #3f3f3f;
+      text-align: center;
+      width: 100%;
+      font-size: 21px;
+      background: #EDEDED;
+      border: 2px solid #000000;
+      box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0), inset 0px 0px 8px 6px rgba(255, 255, 255, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+      transition: all .3s;
+      border-radius: 3px; }
+      .arpeggiatorContainer .oscillatorTypeSelect .selectButton.active {
+        background: #FF7E00;
+        border: 2px solid #000000;
+        box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0.1), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24); }
+        .arpeggiatorContainer .oscillatorTypeSelect .selectButton.active .amountBar .amount {
+          background: #3881FF; }
+      .arpeggiatorContainer .oscillatorTypeSelect .selectButton img {
+        display: block;
+        width: 40%; }
   .arpeggiatorContainer .chordOrderSelect {
+    z-index: 98;
+    top: 0;
+    bottom: 0;
     position: fixed;
     left: 0;
     height: 100%;
-    width: 150px;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: stretch;

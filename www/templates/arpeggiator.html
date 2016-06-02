@@ -10,15 +10,30 @@
 		
 		
 	</div>
-	<div class="oscillatorTypeSelect" style="position:fixed;top:10px; right:10px; z-index:100;">
-		<button ng-click="changeOscillatorType('sinus')">Sinus</button><br>
+	<div class="oscillatorTypeSelect" >
+		<div class="selectButton" ng-class="{'active' : oscillatorType == 'sinus'}"  ng-click="changeOscillatorType('sinus')">
+			<img src="/img/osc-sinus.svg">
+		</div>
+		<div class="selectButton" ng-class="{'active' : oscillatorType == 'square'}"  ng-click="changeOscillatorType('square')">
+			<img src="/img/osc-square.svg">
+		</div>
+		<div class="selectButton" ng-class="{'active' : oscillatorType == 'triangle'}"  ng-click="changeOscillatorType('triangle')">
+			<img src="/img/osc-triangle.svg">
+		</div>
+		<div class="selectButton" ng-class="{'active' : oscillatorType == 'sawtooth'}"  ng-click="changeOscillatorType('sawtooth')">
+			<img src="/img/osc-sawtooth.svg">
+		</div>
+		
+
+		<!--button ng-click="changeOscillatorType('sinus')">Sinus</button><br>
 		<button ng-click="changeOscillatorType('square')">Square</button><br>
 		<button ng-click="changeOscillatorType('triangle')">Triangle</button><br>
-		<button ng-click="changeOscillatorType('sawtooth')">sawtooth</button><br>
+		<button ng-click="changeOscillatorType('sawtooth')">sawtooth</button><br-->
 	</div>
 	<div class="noteContainer" >
+		<img class="base" src="/img/inset_base.svg" >
 		<img ng-click="toggleArpeggiator()" class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg)'}">
-		<!--img src="/img/inset_base.svg" -->
+		
 		<div static-include="/img/segment_circle.html"></div>
 		<!--img class="segmentCircle" src="/img/segment_circle.svg"-->
 	</div>

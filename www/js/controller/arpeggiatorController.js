@@ -11,6 +11,7 @@
 
       var half = (360/7)/2;
       $scope.noteOrder = $rootScope.chordOrders[0];
+      $scope.oscillatorType = 'sinus';
 
      $scope.notes = {
      	'C' : {
@@ -61,6 +62,7 @@
      }
 
      $scope.changeOscillatorType = function(type){
+     		$scope.oscillatorType = type;
      	     socket.emit('changeOscillatorType', type);
 
      }
