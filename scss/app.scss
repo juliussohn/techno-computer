@@ -308,7 +308,7 @@ h1 {
     position: relative;
 
     .segmentCircle {
-        position: absolute;
+        position: fixed;
         height: 100%;
         left: 50%;
         top: 50%;
@@ -316,22 +316,30 @@ h1 {
     }
 
     .tick {
-        position: absolute;
+        position: fixed;
         z-index: 99;
         height: 44%;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         max-width: 182px;
+        transform-origin: 0% 0%;
     }
 
     .base {
         max-width: 630px;
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         height: 165%;
         transform: translate(-50%, -50%);
+    }
+
+    .lampBig {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
     }
 }
 
@@ -723,7 +731,7 @@ h1 {
 
         .selectButton {
             display: flex;
-            flex:1;
+            flex: 1;
             align-items: center;
             justify-content: center;
             color: #3f3f3f;
@@ -754,7 +762,7 @@ h1 {
     }
 
     .chordOrderSelect {
-          z-index: 98;
+        z-index: 98;
         top: 0;
         bottom: 0;
         position: fixed;
@@ -800,6 +808,69 @@ h1 {
                     bottom: 0;
                 }
             }
+        }
+    }
+}
+
+.lampBig {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    background: #323232;
+    background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, #111111 100%);
+    border: 1px solid #000000, 1px solid rgba(150, 150, 150, 0.3);
+    box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 8px 1px rgba(0, 0, 0, 0.77);
+    display: flex;
+    align-items: center;
+    transform-origin: 0% 0%;
+    justify-content: center;
+    position: relative;
+    pointer-events: none;
+
+
+    //overflow:hidden;
+
+    .l1 {
+        position: relative;
+        z-index: 9;
+        transition: all .2s;
+        height: 20px;
+        width: 20px;
+        border-radius: 100%;
+        background: #565656;
+        border: 1px solid #4e4e4e;
+        box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24);
+        box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(#FFFA00, 0), 0px 0px 6px 0px rgba(#8FDD78, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* Oval 27: */
+    }
+
+    .l2 {
+        height: 18px;
+        width: 18px;
+        border-radius: 100%;
+        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.9) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .l3 {
+        height: 18px;
+        width: 18px;
+        border-radius: 100%;
+        opacity: 0.54;
+        background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.5) 100%);
+    }
+
+    &.active {
+        .l1 {
+            background: red !important;
+            border: 1px solid red !important;
+            box-shadow: 0px 2px 19px 0px rgba(red, 0.54), 0px 0px 2px 0px red, 0px 0px 6px 0px red, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24) !important;
         }
     }
 }

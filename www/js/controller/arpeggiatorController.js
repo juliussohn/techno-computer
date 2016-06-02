@@ -12,6 +12,7 @@
       var half = (360/7)/2;
       $scope.noteOrder = $rootScope.chordOrders[0];
       $scope.oscillatorType = 'sinus';
+      $scope.arpeggiatorActivated = false;
 
      $scope.notes = {
      	'C' : {
@@ -54,6 +55,7 @@
 
      $scope.toggleArpeggiator = function(){
      	 socket.emit('changeArpeggiatorPower');
+     	 $scope.arpeggiatorActivated = !$scope.arpeggiatorActivated;
      }
 
      $scope.changeNoteOrder = function(i){

@@ -31,8 +31,15 @@
 		<button ng-click="changeOscillatorType('sawtooth')">sawtooth</button><br-->
 	</div>
 	<div class="noteContainer" >
+	<div class="lampBig" ng-class="{'active' : arpeggiatorActivated}" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) translate(-50%, -50%)'}">
+		<div class="l1">
+			<div class="l2">
+				<div class="l3"></div>
+			</div>
+		</div>
+	</div>
 		<img class="base" src="/img/inset_base.svg" >
-		<img ng-click="toggleArpeggiator()" class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg)'}">
+		<img ng-click="toggleArpeggiator()" class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) translate(-50%, -50%)'}">
 		
 		<div static-include="/img/segment_circle.html"></div>
 		<!--img class="segmentCircle" src="/img/segment_circle.svg"-->
