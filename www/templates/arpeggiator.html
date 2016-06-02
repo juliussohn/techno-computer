@@ -1,6 +1,25 @@
-<div class="noteContainer" >
-
-	<img class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg)'}">
-	<!--img src="/img/inset_base.svg" -->
-	<img class="segmentCircle" src="/img/segment_circle.svg">
+<div class="arpeggiatorContainer">
+	
+	<div class="chordOrderSelect" >
+		<div class="selectButton" ng-class="{'active' : order == noteOrder}" ng-repeat="order in $root.chordOrders track by $index" ng-click="changeNoteOrder($index)">
+		<div class="column"><div class="bar" ng-hide="order[0] == -1" ng-style="{'bottom': (order[0] * 45)+'%'}"></div></div>
+		<div class="column"><div class="bar" ng-hide="order[1] == -1" ng-style="{'bottom': (order[1] * 45)+'%'}"></div></div>
+		<div class="column"><div class="bar" ng-hide="order[2] == -1" ng-style="{'bottom': (order[2] * 45)+'%'}"></div></div>
+		<div class="column"><div class="bar" ng-hide="order[3] == -1" ng-style="{'bottom': (order[3] * 45)+'%'}"></div></div>
+		</div>
+		
+		
+	</div>
+	<div class="oscillatorTypeSelect" style="position:fixed;top:10px; right:10px; z-index:100;">
+		<button ng-click="changeOscillatorType('sinus')">Sinus</button><br>
+		<button ng-click="changeOscillatorType('square')">Square</button><br>
+		<button ng-click="changeOscillatorType('triangle')">Triangle</button><br>
+		<button ng-click="changeOscillatorType('sawtooth')">sawtooth</button><br>
+	</div>
+	<div class="noteContainer" >
+		<img ng-click="toggleArpeggiator()" class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg)'}">
+		<!--img src="/img/inset_base.svg" -->
+		<div static-include="/img/segment_circle.html"></div>
+		<!--img class="segmentCircle" src="/img/segment_circle.svg"-->
+	</div>
 </div>

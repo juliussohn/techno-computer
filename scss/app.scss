@@ -4,6 +4,23 @@
 //@import "components/";
 //@import "pages/";
 //
+//
+//
+
+$instruments: (kick #6DA9FF) (snare #916ce9) (hhClosed #F9AA55) (hhOpen #FF6DB0);
+
+.console {
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 300px;
+    height: 300px;
+    font-family: monospace;
+    z-index: 99;
+    padding: 10px;
+}
+
 @font-face {
     font-family: "DroneRangerOblique";
     src: url("/fonts/DroneRangerOblique.ttf");
@@ -14,12 +31,13 @@
 }
 
 body {
-	height:100%;
+    height: 100%;
     padding: 0;
     margin: 0;
     background: #424242;
     color: white;
     font-family: "DroneRangerOblique";
+    letter-spacing: 1px;
 }
 
 a {
@@ -32,6 +50,59 @@ h1 {
     text-align: center;
     margin: 0;
     margin-top: 25%;
+}
+
+#selectDevice {
+    padding: 20px;
+
+    p {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .homeButton {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 20px;
+        height: 97px;
+        background: #464646;
+        background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+        border: 2px solid #000000;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        position: relative;
+        margin-bottom: 10px;
+        font-size: 26px;
+
+        small {
+            display: block;
+            font-size: .6em;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            height: 5px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+            border-radius: 14px;
+            transition: all .2s;
+        }
+
+        &.active {
+            &:after {
+                background: #74D361;
+
+                //border: 1px solid #272727;
+                box-shadow: 0px 0px 2px 0px #FFFA00, 0px 0px 6px 0px #8FDD78, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+            }
+        }
+    }
 }
 
 #effects {
@@ -97,16 +168,19 @@ h1 {
         border: 2px solid #000000;
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
         border-radius: 3px;
-		.amountBar .amount{
-        		background: #858585;
-        	}
+
+        .amountBar .amount {
+            background: #858585;
+        }
+
         &.active {
             background: #FF7E00;
             border: 2px solid #000000;
             box-shadow: 0px 0px 13px 0px #FF8400, 0px 0px 17px 16px rgba(255, 129, 0, 0.26), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.34), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
-        	.amountBar .amount{
-        		background: #3881FF;
-        	}
+
+            .amountBar .amount {
+                background: #3881FF;
+            }
         }
     }
 }
@@ -131,27 +205,9 @@ h1 {
         display: flex;
         align-items: stretch;
 
-        &.kick {
-            .step.active {
-                background: #6DA9FF;
-            }
-        }
-
-        &.snare {
-            .step.active {
-                background: #916ce9;
-            }
-        }
-
-        &.hhClosed {
-            .step.active {
-                background: #F9AA55;
-            }
-        }
-
-        &.hhOpen {
-            .step.active {
-                background: #FF6DB0;
+        @each $i in $instruments {
+            &.#{nth($i, 1)} .step.active {
+                background: nth($i, 2);
             }
         }
     }
@@ -162,7 +218,6 @@ h1 {
         padding-right: 10px;
 
         .instrumentButton {
-            letter-spacing: 1px;
             font-size: 14px;
             padding: 10px 10px;
             width: 100%;
@@ -233,7 +288,7 @@ h1 {
             background-size: contain;
             background-repeat: no-repeat;
             opacity: 0;
-            background:rgba(255,255,255,.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         &.current {
@@ -250,26 +305,443 @@ h1 {
     }
 }
 
+.noteContainer {
+    height: 350px;
+    width: 350px;
+    margin: 0 auto;
+    top:0;
+    position: relative;
 
-.noteContainer{
-	height:350px;
-	width:350px;
-	margin:0 auto;
-	//background:red;
-	position:relative;
-	.segmentCircle{
-		position:absolute;
-		height: 100%;
-		left:0;
-	}
-	.tick{
-		position:absolute;
-		z-index: 99;
-		width: 46%;
-		left:50%;
-		top:50%;
-		margin-top:-23%;
-		margin-left:-23%;
+    .segmentCircle {
+        margin-left: -20px;
+        position: absolute;
+        height: 100%;
+        left: 0;
+    }
 
-	}
+    .tick {
+        position: absolute;
+        z-index: 99;
+        width: 46%;
+        left: 50%;
+        top: 50%;
+        margin-top: -23%;
+        margin-left: -23%;
+    }
+}
+
+.monitorContainer {
+    // min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-weight: normal;
+        font-size: 22px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 5px;
+        margin-top: 40px;
+    }
+
+    header {
+        padding: 10px 0;
+        background: #424242;
+        background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.38) 0%, rgba(0, 0, 0, 0.09) 100%);
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.5), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px -1px 0px 0px rgba(255, 255, 255, 0.14);
+        text-align: center;
+
+        .playButton {
+            padding: 15px 35px 11px;
+            display: inline-block;
+            background: #C11212;
+            background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.22) 0%, rgba(0, 0, 0, 0.5) 100%);
+            border: 2px solid #000000;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.24);
+            border-radius: 3px;
+
+            &.active {
+                background: red;
+            }
+        }
+
+        .BPMSelect {
+            width: 140px;
+            margin-top: 5px;
+            position: relative;
+            padding-left: 30px;
+            display: inline-block;
+
+            /* 128 BPM: */
+            font-size: 45px;
+            color: #FFFFFF;
+            letter-spacing: 0px;
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+
+            small {
+                font-size: 22px;
+            }
+
+            .stepper {
+                top: 10px;
+                position: absolute;
+                left: 10px;
+
+                .up {
+                    margin-bottom: 7px;
+                }
+
+                img {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .deviceContainer {
+        display: flex;
+        flex: 1;
+
+        .deviceColumn {
+            padding: 30px 70px;
+            flex: 1;
+        }
+
+        .divider {
+            /* Divider: */
+            width: 0px;
+            border: 1px solid #000000;
+            box-shadow: 2px 0px 0px 0px rgba(255, 255, 255, 0.05), -2px 0px 0px 0px rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    .deviceStatus {
+        display: flex;
+        margin-bottom: 50px;
+
+        &.active {
+            .deviceStatusText {
+                background: #1A1A1A;
+            }
+
+            .lamp {
+                .l1 {
+                    background: #74D361 !important;
+                    border: 1px solid #51BF3B !important;
+                    box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0.54), 0px 0px 2px 0px #FFFA00, 0px 0px 6px 0px #8FDD78, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24) !important;
+                }
+            }
+        }
+
+        .deviceStatusLampContainer {
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                display: none;
+            }
+
+            .lamp {
+                height: 16px;
+                width: 16px;
+                border-radius: 100%;
+                background: #323232;
+                background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, #4A4A4A 100%);
+                border: 1px solid #000000, 1px solid rgba(150, 150, 150, 0.3);
+                box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 8px 1px rgba(0, 0, 0, 0.77);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .l1 {
+                    transition: all .3s;
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 100%;
+                    background: #565656;
+                    border: 1px solid #4e4e4e;
+                    box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24);
+                    box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(#FFFA00, 0), 0px 0px 6px 0px rgba(#8FDD78, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .l2 {
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 100%;
+                    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, #FFFFFF 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .l3 {
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 100%;
+                    opacity: 0.54;
+                    background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, #FFFFFF 100%);
+                }
+            }
+        }
+
+        .deviceStatusText {
+            transition: all .3s;
+            flex: 1;
+            background: #2C1212;
+            border: 2px solid #000000;
+            box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 0.12), 0px 1px 0px 0px rgba(255, 255, 255, 0.16), inset 0px 0px 0px 3px rgba(0, 0, 0, 0.24);
+            border-radius: 3px;
+            padding: 20px 0;
+            text-align: center;
+            font-family: "VCR OSD MONO";
+            text-transform: uppercase;
+
+            /* MONITOR - THIS DEVIC: */
+            font-size: 14px;
+            color: #white;
+            letter-spacing: 1px;
+
+            //text-shadow: 0px 0px 5px rgba(255,255,255,0.02);
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                /* Rectangle 228 Copy 2: */
+                background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.17);
+                border-radius: 2px;
+            }
+        }
+    }
+
+    .rootNotes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .note {
+            width: 48%;
+            font-size: 37px;
+            padding: 15px 0 10px 0;
+            text-align: center;
+            background: #464646;
+            border: 2px solid #000000;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+            margin-bottom: 20px;
+        }
+    }
+
+    .sequencerPattern {
+        margin: 0 -5px;
+
+        .instrument {
+            margin-bottom: 15px;
+
+            @each $i in $instruments {
+                &.#{nth($i, 1)} .step.active.current {
+                    .lamp {
+                        .l1 {
+                            background: nth($i, 2) !important;
+                            border: 1px solid nth($i, 2) !important;
+                            box-shadow: 0px 2px 28px 0px rgba(nth($i, 2), 0.54), 0px 0px 5px 0px nth($i, 2), 0px 0px 10px 0px nth($i, 2), 0px 3px 6px 0px rgba(0, 0, 0, 0.5), inset 0px 3px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 4px rgba(255, 255, 255, 0.24) !important;
+                        }
+                    }
+                }
+            }
+
+            .steps {
+                display: flex;
+                align-items: stretch;
+
+                .step {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &.current {
+                        .lamp {
+                            &:before {
+                                z-index: 1;
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+
+                                //background: rgba(255,255,255,.2);
+                           
+                            }
+                        }
+                    }
+
+                    /* &.active {
+                         .lamp {
+                             .l1 {
+                                 background: #74D361 !important;
+                                 border: 1px solid #51BF3B !important;
+                                 box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0.54), 0px 0px 2px 0px #FFFA00, 0px 0px 6px 0px #8FDD78, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24) !important;
+                             }
+                         }
+                     }
+                     */
+                }
+
+                .lamp {
+                    height: 24px;
+                    width: 24px;
+                    border-radius: 100%;
+                    background: #323232;
+                    background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, #111111 100%);
+                    border: 1px solid #000000, 1px solid rgba(150, 150, 150, 0.3);
+                    box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 8px 1px rgba(0, 0, 0, 0.77);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+
+                    //overflow:hidden;
+
+                    .l1 {
+                        position: relative;
+                        z-index: 9;
+                        transition: all .2s;
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 100%;
+                        background: #565656;
+                        border: 1px solid #4e4e4e;
+                        box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24);
+                        box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(#FFFA00, 0), 0px 0px 6px 0px rgba(#8FDD78, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        /* Oval 27: */
+                    }
+
+                    .l2 {
+                        height: 18px;
+                        width: 18px;
+                        border-radius: 100%;
+                        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.9) 100%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .l3 {
+                        height: 18px;
+                        width: 18px;
+                        border-radius: 100%;
+                        opacity: 0.54;
+                        background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.5) 100%);
+                    }
+                }
+            }
+        }
+    }
+
+    .arpeggiatorPattern {
+        /* Rectangle 228: */
+        background: #1A1A1A;
+        border: 2px solid #000000;
+        box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 0.12), 0px 1px 0px 0px rgba(255, 255, 255, 0.16), inset 0px 0px 0px 3px rgba(0, 0, 0, 0.24);
+        border-radius: 1px;
+        padding: 20px;
+        display: flex;
+        align-items: stretch;
+		height: 70px;
+		position:relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            /* Rectangle 228 Copy 2: */
+            background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 2px;
+        }
+
+        .patternColumn {
+            flex: 1;
+            height: 100%;
+            position: relative;
+        }
+
+        .bar {
+        	transition: all .2s;
+        	width: 100%;
+        	position:absolute;
+        	bottom:0;
+            height: 5px;
+            background: white;
+            &.active{
+            	background: green;
+            }
+        }
+    }
+}
+
+.arpeggiatorContainer{
+    height: 100vh;
+
+    .chordOrderSelect{
+        position: fixed;
+        left:0;
+        height: 100%;
+        width: 150px;
+        display:flex;
+        flex-direction: column;
+         align-items: stretch;
+         padding: 5px 0;
+         .selectButton{
+            flex:1;
+            margin: 5px 10px;
+             background: #1A1A1A;
+            border: 2px solid #000000;
+            box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 0.12), 0px 1px 0px 0px rgba(255, 255, 255, 0.16), inset 0px 0px 0px 3px rgba(0, 0, 0, 0.24);
+            border-radius: 1px;
+            padding: 20px;
+            display: flex;
+            align-items: stretch;
+            height: 70px;
+            position:relative;
+            display:flex;
+             align-items: stretch;
+             padding: 5px;
+             &.active{
+                .bar{
+                    background: green !important;
+                }
+             }
+             .column{
+                flex:1;
+                position: relative;
+                .bar{
+                    background: white;
+                    height: 5px;
+                    position:absolute;
+                    width: 100%;
+                    bottom:0;
+                }
+
+             }
+         }
+    }
 }

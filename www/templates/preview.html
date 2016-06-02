@@ -1,1 +1,266 @@
-{{instruments }}
+<div class="monitorContainer">
+	<header>
+	<!--div ng-click="play()">play</div>
+	<div ng-click="stop()">stop</div>
+	<input type="number" value="128" ng-model="BPM"-->
+	<div ng-class="{'active':playing}" ng-click="togglePlay()" class="playButton">
+		
+		<img src="/img/play.svg" alt="">
+	</div>
+	<div class="BPMSelect">
+		<div class="stepper">
+			<div class="up" ng-click="stepBPM(1)"><img src="/img/up.svg" alt=""></div>
+			<div class="down" ng-click="stepBPM(-1)"><img src="/img/down.svg" alt=""></div>
+		</div>
+	{{BPM}}<small>BPM</small></div>
+</header>
+<div class="deviceContainer">
+	<div class="deviceColumn monitor">
+		<div class="deviceStatus" ng-class="{'active':$root.registeredDevices.monitor}">
+			<div class="deviceStatusLampContainer">
+				<div class="lamp active">
+					<div class="l1">
+						<div class="l2">
+							<div class="l3"></div>
+						</div>
+					</div>
+					
+				</div>
+				<img src="/img/led.svg" alt="">
+			</div>
+			<div class="deviceStatusText">
+				Monitor: this device
+			</div>
+			
+		</div>
+	</div>
+	<div class="divider"></div>
+	<div class="deviceColumn sequencer">
+		<div class="deviceStatus" ng-class="{'active':$root.registeredDevices.sequencer}">
+			<div class="deviceStatusLampContainer">
+				<div class="lamp active">
+					<div class="l1">
+						<div class="l2">
+							<div class="l3"></div>
+						</div>
+					</div>
+					
+				</div>
+				<img src="/img/led.svg" alt="">
+			</div>
+			<div class="deviceStatusText">
+				Sequencer <span ng-hide="$root.registeredDevices.sequencer">not </span>connected
+			</div>
+			
+		</div>
+		<h2>Pattern</h2>
+		<div class="sequencerPattern">
+			<div class="instrument kick">
+				<div class="icon"></div>
+				<div class="steps">
+					<div class="step" ng-class="{'current':currentStep == 0, 'active':instruments.kick.sequence[0] && instruments.kick.active}">
+						<div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 1, 'active':instruments.kick.sequence[1] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 2, 'active':instruments.kick.sequence[2] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 3, 'active':instruments.kick.sequence[3] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 4, 'active':instruments.kick.sequence[4] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 5, 'active':instruments.kick.sequence[5] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 6, 'active':instruments.kick.sequence[6] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 7, 'active':instruments.kick.sequence[7] && instruments.kick.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+					</div>
+				</div>
+				<div class="instrument snare">
+				<div class="icon"></div>
+				<div class="steps">
+					<div class="step" ng-class="{'current':currentStep == 0, 'active':instruments.snare.sequence[0] && instruments.snare.active}">
+						<div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 1, 'active':instruments.snare.sequence[1] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 2, 'active':instruments.snare.sequence[2] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 3, 'active':instruments.snare.sequence[3] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 4, 'active':instruments.snare.sequence[4] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 5, 'active':instruments.snare.sequence[5] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 6, 'active':instruments.snare.sequence[6] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 7, 'active':instruments.snare.sequence[7] && instruments.snare.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+					</div>
+				</div>
+				<div class="instrument hhClosed">
+				<div class="icon"></div>
+				<div class="steps">
+					<div class="step" ng-class="{'current':currentStep == 0, 'active':instruments.hhClosed.sequence[0] && instruments.hhClosed.active}">
+						<div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 1, 'active':instruments.hhClosed.sequence[1] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 2, 'active':instruments.hhClosed.sequence[2] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 3, 'active':instruments.hhClosed.sequence[3] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 4, 'active':instruments.hhClosed.sequence[4] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 5, 'active':instruments.hhClosed.sequence[5] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 6, 'active':instruments.hhClosed.sequence[6] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 7, 'active':instruments.hhClosed.sequence[7] && instruments.hhClosed.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+					</div>
+
+				</div>
+				<div class="instrument hhOpen">
+				<div class="icon"></div>
+				<div class="steps">
+					<div class="step" ng-class="{'current':currentStep == 0, 'active':instruments.hhOpen.sequence[0] && instruments.hhOpen.active}">
+						<div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 1, 'active':instruments.hhOpen.sequence[1] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 2, 'active':instruments.hhOpen.sequence[2] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 3, 'active':instruments.hhOpen.sequence[3] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 4, 'active':instruments.hhOpen.sequence[4] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 5, 'active':instruments.hhOpen.sequence[5] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 6, 'active':instruments.hhOpen.sequence[6] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+						<div class="step" ng-class="{'current':currentStep == 7, 'active':instruments.hhOpen.sequence[7] && instruments.hhOpen.active}"><div class="lamp">
+							<div class="l1"><div class="l2"><div class="l3"></div></div>
+							</div>
+						</div></div>
+					</div>
+					
+				</div>
+			</div>
+			<h2>Filter</h2>
+			<div class="filter">
+				<div class="filter">
+					<div class="inner"><img src="" alt=""></div>
+				</div>
+				<div class="filter">
+					<div class="inner"><img src="" alt=""></div>
+				</div>
+				<div class="filter">
+					<div class="inner"><img src="" alt=""></div>
+				</div>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="deviceColumn arpeggiator">
+			<div class="deviceStatus" ng-class="{'active':$root.registeredDevices.arpeggiator}">
+				<div class="deviceStatusLampContainer">
+					<div class="lamp active">
+						<div class="l1">
+							<div class="l2">
+								<div class="l3"></div>
+							</div>
+						</div>
+						
+					</div>
+					<img src="/img/led.svg" alt="">
+				</div>
+				<div class="deviceStatusText">
+					Arpeggiator <span ng-hide="$root.registeredDevices.arpeggiator">not </span>connected
+				</div>
+				
+			</div>
+			<h2>Root note</h2>
+			<div class="rootNotes">
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'C' ? rootNote.color : 'inherit'}">C</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'D' ? rootNote.color : 'inherit'}">D</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'E' ? rootNote.color : 'inherit'}">E</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'F' ? rootNote.color : 'inherit'}">F</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'G' ? rootNote.color : 'inherit'}">G</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'A' ? rootNote.color : 'inherit'}">A</div>
+				<div class="note" ng-style="{'background-color' : rootNote.name == 'B' ? rootNote.color : 'inherit'}">B</div>
+			</div>
+			<h2>Pattern</h2>
+			<div class="arpeggiatorPattern">
+				<div class="patternColumn"><div ng-hide="chordOrder[0] == -1" ng-class="{'active': isCurrentPatternBar(0) }" class="bar" ng-style="{'bottom': (chordOrder[0] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[1] == -1" ng-class="{'active': isCurrentPatternBar(1) }" class="bar" ng-style="{'bottom': (chordOrder[1] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[2] == -1" ng-class="{'active': isCurrentPatternBar(2) }" class="bar" ng-style="{'bottom': (chordOrder[2] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[3] == -1" ng-class="{'active': isCurrentPatternBar(3) }" class="bar" ng-style="{'bottom': (chordOrder[3] * 45)+'%'}"></div></div>
+				
+			</div>
+
+		</div>
+	</div>
+</div>

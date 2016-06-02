@@ -1,0 +1,10 @@
+<div id="selectDevice">
+	<p>welcome to our modular web audio synth experiment.</p>
+	<p>
+		If you havent already, please open this page on a desktop computer as well. follow up by clicking the okay label below this text and choose one of the options below.
+	</p>
+	<div ng-click="launchController('sequencer')" ng-class="{'active':$root.registeredDevices.sequencer}" href="/#/sequencer" class="homeButton ">Sequencer
+	<small ng-show="$root.registeredDevices.sequencer">connected</small></div>
+	<div ng-click="launchController('arpeggiator')" ng-class="{'active':$root.registeredDevices.arpeggiator}" href="/#/arpeggiator" class="homeButton">Arpeggiator
+	<small  ng-show="$root.registeredDevices.arpeggiator">Connected</small></div>
+</div>
