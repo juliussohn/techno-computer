@@ -541,6 +541,9 @@ h1 {
     flex-direction: column;
     align-items: stretch;
     padding: 5px 0; }
+    .arpeggiatorContainer .oscillatorTypeSelect .headline {
+      padding: 5px;
+      font-size: 22px; }
     .arpeggiatorContainer .oscillatorTypeSelect .selectButton {
       display: flex;
       flex: 1;
@@ -576,6 +579,9 @@ h1 {
     flex-direction: column;
     align-items: stretch;
     padding: 5px 0; }
+    .arpeggiatorContainer .chordOrderSelect .headline {
+      padding: 5px 10px;
+      font-size: 22px; }
     .arpeggiatorContainer .chordOrderSelect .selectButton {
       flex: 1;
       margin: 5px 10px;
@@ -590,13 +596,17 @@ h1 {
       position: relative;
       display: flex;
       align-items: stretch;
-      padding: 5px; }
-      .arpeggiatorContainer .chordOrderSelect .selectButton.active .bar {
-        background: green !important; }
+      padding: 10px;
+      transition: all .2s; }
+      .arpeggiatorContainer .chordOrderSelect .selectButton.active {
+        background: #002B00; }
+        .arpeggiatorContainer .chordOrderSelect .selectButton.active .bar {
+          background: green !important; }
       .arpeggiatorContainer .chordOrderSelect .selectButton .column {
         flex: 1;
         position: relative; }
         .arpeggiatorContainer .chordOrderSelect .selectButton .column .bar {
+          transition: all .2s;
           background: white;
           height: 5px;
           position: absolute;

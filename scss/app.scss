@@ -715,8 +715,12 @@ h1 {
 
 .arpeggiatorContainer {
     height: 100vh;
-
+    
     .oscillatorTypeSelect {
+         .headline{
+            padding: 5px;
+            font-size: 22px;
+        }
         z-index: 99;
         position: fixed;
         right: 5px;
@@ -773,7 +777,10 @@ h1 {
         flex-direction: column;
         align-items: stretch;
         padding: 5px 0;
-
+        .headline{
+            padding: 5px 10px;
+             font-size: 22px;
+        }
         .selectButton {
             flex: 1;
             margin: 5px 10px;
@@ -788,9 +795,10 @@ h1 {
             position: relative;
             display: flex;
             align-items: stretch;
-            padding: 5px;
-
+            padding: 10px;
+            transition:all .2s;
             &.active {
+                background: #002B00;
                 .bar {
                     background: green !important;
                 }
@@ -801,6 +809,7 @@ h1 {
                 position: relative;
 
                 .bar {
+                    transition:all .2s;
                     background: white;
                     height: 5px;
                     position: absolute;

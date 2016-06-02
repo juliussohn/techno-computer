@@ -1,6 +1,7 @@
 <div class="arpeggiatorContainer">
 	
 	<div class="chordOrderSelect" >
+	<div class="headline">Pattern</div>
 		<div class="selectButton" ng-class="{'active' : order == noteOrder}" ng-repeat="order in $root.chordOrders track by $index" ng-click="changeNoteOrder($index)">
 		<div class="column"><div class="bar" ng-hide="order[0] == -1" ng-style="{'bottom': (order[0] * 45)+'%'}"></div></div>
 		<div class="column"><div class="bar" ng-hide="order[1] == -1" ng-style="{'bottom': (order[1] * 45)+'%'}"></div></div>
@@ -11,6 +12,7 @@
 		
 	</div>
 	<div class="oscillatorTypeSelect" >
+	<div class="headline">Type</div>
 		<div class="selectButton" ng-class="{'active' : oscillatorType == 'sinus'}"  ng-click="changeOscillatorType('sinus')">
 			<img src="/img/osc-sinus.svg">
 		</div>
