@@ -40,7 +40,10 @@
       * @type {[type]}
       */
      $scope.audioCtx = new(window.AudioContext || window.webkitAudioContext);
+	 $scope.analyser = $scope.audioCtx.createAnalyser();
+	 
 
+	 
 
           /**
       * Syncthesiser
@@ -109,11 +112,14 @@
              $scope.snare.oscEnvelope.connect($scope.passFilter);
              $scope.snare.noiseEnvelope.connect($scope.passFilter);
 
-             $scope.passFilter.connect($scope.audioCtx.destination);
+             $scope.passFilter.connect($scope.analyser);
          } else {
-             $scope.snare.noiseEnvelope.connect($scope.audioCtx.destination);
-             $scope.snare.oscEnvelope.connect($scope.audioCtx.destination);
+             $scope.snare.noiseEnvelope.connect($scope.analyser);
+             $scope.snare.oscEnvelope.connect($scope.analyser);
          }
+           $scope.analyser.connect($scope.audioCtx.destination);
+        
+
 
 
 
@@ -139,6 +145,7 @@
          $scope.snare.oscEnvelope.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
          $scope.snare.osc.start(time)
          $scope.snare.osc.stop(time + 0.2);
+
          $scope.snare.noise.stop(time + 0.2);
 
 
@@ -165,10 +172,12 @@
 
          if ($scope.filter) {
              $scope.kick.gain.connect($scope.passFilter);
-             $scope.passFilter.connect($scope.audioCtx.destination);
+             $scope.passFilter.connect($scope.analyser);
          } else {
-             $scope.kick.gain.connect($scope.audioCtx.destination);
+             $scope.kick.gain.connect($scope.analyser);
          }
+
+          $scope.analyser.connect($scope.audioCtx.destination);
 
      };
      $scope.kick.trigger = function(time) {
@@ -206,10 +215,11 @@
 
          if ($scope.filter) {
              $scope.hhClosed.source.connect($scope.passFilter);
-             $scope.passFilter.connect($scope.audioCtx.destination);
+             $scope.passFilter.connect($scope.analyser);
          } else {
-             $scope.hhClosed.source.connect($scope.audioCtx.destination);
+             $scope.hhClosed.source.connect($scope.analyser);
          }
+         $scope.analyser.connect($scope.audioCtx.destination);
      };
 
      $scope.hhClosed.trigger = function(time) {
@@ -239,10 +249,11 @@
 
          if ($scope.filter) {
              $scope.hhOpen.source.connect($scope.passFilter);
-             $scope.passFilter.connect($scope.audioCtx.destination);
+             $scope.passFilter.connect( $scope.analyser);
          } else {
-             $scope.hhOpen.source.connect($scope.audioCtx.destination);
+             $scope.hhOpen.source.connect( $scope.analyser);
          }
+         $scope.analyser.connect($scope.audioCtx.destination);
 
 
      };
@@ -309,7 +320,10 @@
      });
 
      socket.on('changeArpeggiatorPowerClient', function(filter) {
-        $scope.arpeggiatorActive = !$scope.arpeggiatorActive;
+     	$scope.$apply(function(){
+     		 $scope.arpeggiatorActive = !$scope.arpeggiatorActive;
+     	})
+       
 
      });
 
@@ -358,6 +372,46 @@
      	 
      }
 
+
+     $scope.drawVisualizer = function(){
+     		$scope.analyser.fftSize = 128;
+        var frequencyData = new Uint8Array($scope.analyser.frequencyBinCount);
+		$scope.analyser.getByteFrequencyData(frequencyData);
+		console.log(frequencyData)
+		var canvas = document.getElementById('visualiser');
+		console.log(canvas)
+		  var drawContext = canvas.getContext('2d');
+		  WIDTH = 300;
+		  HEIGHT = 160;
+		  canvas.width = WIDTH;
+		 canvas.height = HEIGHT;
+		  // Draw the frequency domain chart.
+		  // 
+		  for (var i = 0; i < $scope.analyser.frequencyBinCount; i++) {
+		    var value = frequencyData[i];
+		    var percent = value / 256;
+		    var height = HEIGHT * percent;
+		    var offset = HEIGHT - height - 1 ;
+		    var barWidth = (WIDTH/$scope.analyser.frequencyBinCount) - 1;
+		    //var hue = i/$scope.analyser.frequencyBinCount * 360;
+		    drawContext.fillStyle = '#3881FF';//'hsl(' + hue + ', 100%, 50%)';
+		    drawContext.fillRect(i * barWidth +i, offset, barWidth, height);
+
+
+		  }
+
+		     for (var i = 0; i < $scope.analyser.frequencyBinCount; i++) {
+			    var value = frequencyData[i];
+			    var percent = value / 256;
+			    var height = HEIGHT * percent;
+			    var offset = HEIGHT - height - 1;
+			    var barWidth = WIDTH/$scope.analyser.frequencyBinCount -1 ;
+			    drawContext.fillStyle = 'white';
+			    drawContext.fillRect(i * barWidth + i, offset, 1, 4);
+			  }
+
+
+     }
      /**
       * Play Sequence in interval
       * @type {Object}
@@ -386,6 +440,8 @@
              }
 
          }
+       
+        
 
          if ($scope.currentStep < steps - 1) {
              $scope.currentStep++;
@@ -401,6 +457,9 @@
          }
          $scope.beatInterval = $interval($scope.playBeat, $scope.bpmToSeconds($scope.BPM));
      }
+
+       
+        $scope.visualiserInterval = $interval($scope.drawVisualizer, 10);
 
      $scope.changeBPM = function(BPM){
      	  socket.emit('changeBPM', BPM, function(response){

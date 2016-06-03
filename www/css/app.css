@@ -501,7 +501,10 @@ h1 {
     display: flex;
     align-items: stretch;
     height: 70px;
-    position: relative; }
+    position: relative;
+    transition: all .2s; }
+    .monitorContainer .arpeggiatorPattern.active {
+      background: #002B00; }
     .monitorContainer .arpeggiatorPattern:before {
       content: '';
       position: absolute;
@@ -532,7 +535,7 @@ h1 {
   .arpeggiatorContainer .oscillatorTypeSelect {
     z-index: 99;
     position: fixed;
-    right: 5px;
+    right: 8px;
     top: 0;
     bottom: 0;
     height: 100%;
@@ -542,9 +545,10 @@ h1 {
     align-items: stretch;
     padding: 5px 0; }
     .arpeggiatorContainer .oscillatorTypeSelect .headline {
-      padding: 5px;
+      padding: 10px 5px 10px;
       font-size: 22px; }
     .arpeggiatorContainer .oscillatorTypeSelect .selectButton {
+      margin: 5px 0px;
       display: flex;
       flex: 1;
       align-items: center;
@@ -580,7 +584,7 @@ h1 {
     align-items: stretch;
     padding: 5px 0; }
     .arpeggiatorContainer .chordOrderSelect .headline {
-      padding: 5px 10px;
+      padding: 10px 10px 5px;
       font-size: 22px; }
     .arpeggiatorContainer .chordOrderSelect .selectButton {
       flex: 1;
@@ -660,3 +664,25 @@ h1 {
     background: red !important;
     border: 1px solid red !important;
     box-shadow: 0px 2px 19px 0px rgba(255, 0, 0, 0.54), 0px 0px 2px 0px red, 0px 0px 6px 0px red, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24) !important; }
+
+div.visualiserContainer {
+  background: #1A1A1A;
+  border: 2px solid #000000;
+  box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 0.12), 0px 1px 0px 0px rgba(255, 255, 255, 0.16), inset 0px 0px 0px 3px rgba(0, 0, 0, 0.24);
+  border-radius: 1px;
+  position: relative;
+  padding: 10px; }
+  div.visualiserContainer canvas {
+    display: block;
+    width: 100%; }
+  div.visualiserContainer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Rectangle 228 Copy 2: */
+    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 2px; }

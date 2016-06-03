@@ -33,6 +33,10 @@
 			</div>
 			
 		</div>
+		<div class="visualiserContainer">
+			<canvas id="visualiser" ></canvas>
+		</div>
+		
 	</div>
 	<div class="divider"></div>
 	<div class="deviceColumn sequencer">
@@ -253,7 +257,7 @@
 				<div class="note" ng-style="{'background-color' : rootNote.name == 'B' ? rootNote.color : 'inherit'}">B</div>
 			</div>
 			<h2>Pattern</h2>
-			<div class="arpeggiatorPattern">
+			<div class="arpeggiatorPattern" ng-class="{'active':arpeggiatorActive == true}">
 				<div class="patternColumn"><div ng-hide="chordOrder[0] == -1" ng-class="{'active': isCurrentPatternBar(0) }" class="bar" ng-style="{'bottom': (chordOrder[0] * 45)+'%'}"></div></div>
 				<div class="patternColumn"><div ng-hide="chordOrder[1] == -1" ng-class="{'active': isCurrentPatternBar(1) }" class="bar" ng-style="{'bottom': (chordOrder[1] * 45)+'%'}"></div></div>
 				<div class="patternColumn"><div ng-hide="chordOrder[2] == -1" ng-class="{'active': isCurrentPatternBar(2) }" class="bar" ng-style="{'bottom': (chordOrder[2] * 45)+'%'}"></div></div>
