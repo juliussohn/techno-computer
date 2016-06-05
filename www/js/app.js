@@ -65,6 +65,9 @@
          [1, -1, 1, -1],
          [0, 1, 0, 2],
          [0, 1, 2, 1],
+         [0, 1, 2, 1],
+         [0, 0, 0, 0],
+         [0, 1, 2, 2],
      ];
      $rootScope.registeredDevices = {
          monitor: false,
@@ -89,9 +92,7 @@
   * Disable scrolling
   * @type {Object}
   */
- document.ontouchmove = function(event) {
-     event.preventDefault();
- }
+
 
  /**
   * Calculate from one range to another

@@ -10,7 +10,9 @@
      $scope.bpmToSeconds = function(bpm) {
          return (60000 / bpm) / 4;
      };
-
+ document.ontouchmove = function(event) {
+     event.preventDefault();
+ }
 
 
      $scope.filter = false;

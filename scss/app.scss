@@ -105,7 +105,7 @@ h1 {
     }
 }
 
-#effects {
+.effects {
     height: 100%;
     width: 20%;
     display: flex;
@@ -162,16 +162,22 @@ h1 {
             background: #FF7E00;
             border: 2px solid #000000;
             box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0.1), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
-
+            color:white;
             .amountBar .amount {
                 background: #3881FF;
             }
+              img{
+
+                    -webkit-filter: brightness(100);
+                }
+
         }
 
         .inner {
             width: 100%;
 
             img {
+                 transition: all .3s;
                 display: block;
                 margin: 0 auto;
                 margin-bottom: 15px;
@@ -344,7 +350,7 @@ h1 {
 }
 
 .monitorContainer {
-    // min-height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 
@@ -540,20 +546,76 @@ h1 {
     .rootNotes {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+            justify-content: space-between;
+            align-content:flex-start;
 
         .note {
-            width: 48%;
+            width: 22%;
             font-size: 37px;
             padding: 15px 0 10px 0;
             text-align: center;
             background: #464646;
             border: 2px solid #000000;
             box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
     }
+    .effects{
+        flex-direction: row;
+        width: 100%;
+         justify-content: space-between;
+        .effect{
+           flex:1;
+            width: 30%;
+             height: 110px;
 
+        }
+        .spacer{
+            width: 10px;
+        }
+    }
+    .oscillatorType{
+        display: flex;
+          flex-direction: row;
+        width: 100%;
+         justify-content: space-between;
+         .spacer{
+            width: 10px;
+        }
+         .selectButton{
+            flex:1;
+             margin: 5px 0px;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            color: #3f3f3f;
+            text-align: center;
+            width: 100%;
+            font-size: 21px;
+            background: #EDEDED;
+            border: 2px solid #000000;
+            box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0), inset 0px 0px 8px 6px rgba(255, 255, 255, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+            transition: all .3s;
+            border-radius: 3px;
+            padding: 10px 0;
+
+            &.active {
+                background: #FF7E00;
+                border: 2px solid #000000;
+                box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0.1), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+                img{
+
+                    -webkit-filter: brightness(100);
+                }
+              
+            }
+            img{
+                width: 60%;
+                display: block
+            }
+         }
+    }
     .sequencerPattern {
         margin: 0 -5px;
 
@@ -757,9 +819,9 @@ h1 {
                 background: #FF7E00;
                 border: 2px solid #000000;
                 box-shadow: 0px 0px 13px 0px rgba(255, 132, 0, 0), 0px 0px 17px 16px rgba(255, 129, 0, 0.1), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 8px 6px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+                  img{
 
-                .amountBar .amount {
-                    background: #3881FF;
+                    -webkit-filter: brightness(100);
                 }
             }
 

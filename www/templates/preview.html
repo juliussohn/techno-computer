@@ -33,7 +33,9 @@
 			</div>
 			
 		</div>
+		<h2>Visualiser</h2>
 		<div class="visualiserContainer">
+
 			<canvas id="visualiser" ></canvas>
 		</div>
 		
@@ -215,17 +217,45 @@
 				</div>
 			</div>
 			<h2>Filter</h2>
-			<div class="filter">
-				<div class="filter">
-					<div class="inner"><img src="" alt=""></div>
+<div class="effects">
+		<div class="effect">
+			<div  ng-class="{'active':filter == 'highpass'}" class="effectButton highpass">
+				<div class="inner">
+				<img src="img/hp.svg" alt="">
+					HP
 				</div>
-				<div class="filter">
-					<div class="inner"><img src="" alt=""></div>
+				<div class="amountBar" >
+					<div class="amount" ng-style="{'height':filterAmount+'%'}"></div>
 				</div>
-				<div class="filter">
-					<div class="inner"><img src="" alt=""></div>
+				
+			</div>
+		</div>
+		<div class="spacer"></div>
+		<div class="effect">
+			<div  ng-class="{'active':filter== 'bypass'}" class="effectButton bypass">
+				<div class="inner">
+				<img src="img/bp.svg" alt="">
+					BP
+				</div>
+				<div class="amountBar" >
+					<div class="amount" ng-style="{'height':filterAmount+'%'}"></div>
 				</div>
 			</div>
+		</div>
+		<div class="spacer"></div>
+		<div class="effect">
+			<div  ng-class="{'active':filter== 'lowpass'}" class="effectButton lowpass">
+				<div class="inner" >
+				<img src="img/lp.svg" alt="">
+					LP
+				</div>
+				<div class="amountBar" >
+					<div class="amount" ng-style="{'height':filterAmount+'%'}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+			
 		</div>
 		<div class="divider"></div>
 		<div class="deviceColumn arpeggiator">
@@ -246,6 +276,33 @@
 				</div>
 				
 			</div>
+			<h2>Pattern</h2>
+			<div class="arpeggiatorPattern" ng-class="{'active':arpeggiatorActive == true}">
+				<div class="patternColumn"><div ng-hide="chordOrder[0] == -1" ng-class="{'active': isCurrentPatternBar(0) }" class="bar" ng-style="{'bottom': (chordOrder[0] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[1] == -1" ng-class="{'active': isCurrentPatternBar(1) }" class="bar" ng-style="{'bottom': (chordOrder[1] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[2] == -1" ng-class="{'active': isCurrentPatternBar(2) }" class="bar" ng-style="{'bottom': (chordOrder[2] * 45)+'%'}"></div></div>
+				<div class="patternColumn"><div ng-hide="chordOrder[3] == -1" ng-class="{'active': isCurrentPatternBar(3) }" class="bar" ng-style="{'bottom': (chordOrder[3] * 45)+'%'}"></div></div>
+				
+			</div>
+			<h2>Oscillaltor type</h2>
+			<div class="oscillatorType" >
+				<div class="selectButton" ng-class="{'active' : synth.type == 'sinus'}" >
+					<img src="/img/osc-sinus.svg">
+				</div>
+				<div class="spacer"></div>
+				<div class="selectButton" ng-class="{'active' : synth.type == 'square'}" >
+					<img src="/img/osc-square.svg">
+				</div>
+				<div class="spacer"></div>
+				<div class="selectButton" ng-class="{'active' : synth.type == 'triangle'}" >
+					<img src="/img/osc-triangle.svg">
+				</div>
+				<div class="spacer"></div>
+				<div class="selectButton" ng-class="{'active' : synth.type == 'sawtooth'}" >
+					<img src="/img/osc-sawtooth.svg">
+				</div>
+
+			</div>
 			<h2>Root note</h2>
 			<div class="rootNotes">
 				<div class="note" ng-style="{'background-color' : rootNote.name == 'C' ? rootNote.color : 'inherit'}">C</div>
@@ -255,15 +312,9 @@
 				<div class="note" ng-style="{'background-color' : rootNote.name == 'G' ? rootNote.color : 'inherit'}">G</div>
 				<div class="note" ng-style="{'background-color' : rootNote.name == 'A' ? rootNote.color : 'inherit'}">A</div>
 				<div class="note" ng-style="{'background-color' : rootNote.name == 'B' ? rootNote.color : 'inherit'}">B</div>
+				<div class="note" style="opacity:0"></div>
 			</div>
-			<h2>Pattern</h2>
-			<div class="arpeggiatorPattern" ng-class="{'active':arpeggiatorActive == true}">
-				<div class="patternColumn"><div ng-hide="chordOrder[0] == -1" ng-class="{'active': isCurrentPatternBar(0) }" class="bar" ng-style="{'bottom': (chordOrder[0] * 45)+'%'}"></div></div>
-				<div class="patternColumn"><div ng-hide="chordOrder[1] == -1" ng-class="{'active': isCurrentPatternBar(1) }" class="bar" ng-style="{'bottom': (chordOrder[1] * 45)+'%'}"></div></div>
-				<div class="patternColumn"><div ng-hide="chordOrder[2] == -1" ng-class="{'active': isCurrentPatternBar(2) }" class="bar" ng-style="{'bottom': (chordOrder[2] * 45)+'%'}"></div></div>
-				<div class="patternColumn"><div ng-hide="chordOrder[3] == -1" ng-class="{'active': isCurrentPatternBar(3) }" class="bar" ng-style="{'bottom': (chordOrder[3] * 45)+'%'}"></div></div>
-				
-			</div>
+			
 
 		</div>
 	</div>

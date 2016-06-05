@@ -7,8 +7,9 @@
       * Watch device orientation
       * @type {Object}
       */
-     
-
+ document.ontouchmove = function(event) {
+     event.preventDefault();
+ }
       var half = (360/7)/2;
       $scope.noteOrder = $rootScope.chordOrders[0];
       $scope.oscillatorType = 'sinus';

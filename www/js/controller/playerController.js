@@ -317,6 +317,9 @@
          $scope.passFilter.type = filter;
          console.log("filter changed", $scope.passFilter.type);
 
+
+
+
      });
 
      socket.on('changeArpeggiatorPowerClient', function(filter) {
@@ -355,6 +358,9 @@
          var rad = orientation.alpha * (Math.PI/180)
          var lowpass = rangeToRange(Math.sin(rad)+1, 0, 2, lowpassRange[0], lowpassRange[1]);
          $scope.passFilter.frequency.value = lowpass;
+
+
+             $scope.filterAmount = 100 - rangeToRange(Math.sin(rad)+1, 0, 2, 0, 100);
      });
 
      socket.on('changeArpeggiatorOrientationClient', function(rootNote) {
