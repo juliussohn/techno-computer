@@ -19,8 +19,6 @@
     "angular": "^1.5.6",
     "angular-ui-router": "^0.3.0",
     "AngularHammer": "ryanmullins-angular-hammer#^2.1.10",
-    "cordova": "^3.4.0",
-    "ngCordova": "^0.1.26-alpha",
-    "angular-chart.js": "^0.10.2"
+
   }
 }
