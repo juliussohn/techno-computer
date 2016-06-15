@@ -80,14 +80,14 @@
       * @type {Object}
       */
      $scope.changeFilter = function() {
-         socket.emit('changeFilter', $scope.filter);
+         socket.emit('changeFilter', {value: $scope.filter, token:$rootScope.clientToken});
      };
 
      $scope.changeSequencer = function() {
-         socket.emit('changeSequence', $scope.instruments);
+         socket.emit('changeSequence',  {value: $scope.instruments, token:$rootScope.clientToken} );
      };
      $scope.changeBPM = function() {
-         socket.emit('changeBPM', $scope.bpm);
+         socket.emit('changeBPM',{value: $scope.bpm, token:$rootScope.clientToken});
      };
 
      /**
@@ -191,7 +191,7 @@
              $scope.filterAmount = 100 - rangeToRange(Math.sin(rad)+1, 0, 2, 0, 100);
          });
 
-         socket.emit("changeFilterAmount", $scope.currentOrientation);
+         socket.emit("changeFilterAmount",{value:  $scope.currentOrientation, token:$rootScope.clientToken});
      });
 
 

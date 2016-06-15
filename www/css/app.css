@@ -735,3 +735,76 @@ div.visualiserContainer {
     background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
     border: 1px solid rgba(255, 255, 255, 0.17);
     border-radius: 2px; }
+
+#loginContainer {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch; }
+  #loginContainer p {
+    margin-bottom: 40px;
+    margin-top: 0px;
+    font-size: 1.4em; }
+  #loginContainer .displayContainer .codeInputContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    margin: 15px 0;
+    transition: all .1s; }
+    #loginContainer .displayContainer .codeInputContainer.error {
+      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      color: #CC1919; }
+      #loginContainer .displayContainer .codeInputContainer.error .char {
+        border-color: #CC1919 !important; }
+  #loginContainer .displayContainer .char {
+    flex: 1;
+    border-bottom: 2px solid white;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 50px;
+    transition: all .3s; }
+    #loginContainer .displayContainer .char.active {
+      border-color: #74D361; }
+  #loginContainer .displayContainer .spacer {
+    width: 10px; }
+  #loginContainer .codeKeyboard {
+    padding-top: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch; }
+    #loginContainer .codeKeyboard .row {
+      flex: 1;
+      display: flex;
+      justify-content: stretch;
+      margin-bottom: 10px; }
+      #loginContainer .codeKeyboard .row .spacer {
+        width: 10px; }
+      #loginContainer .codeKeyboard .row .empty {
+        flex: 1; }
+      #loginContainer .codeKeyboard .row .numberButton {
+        flex: 1;
+        text-align: center;
+        /* Rectangle 172: */
+        background: #464646;
+        background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+        border: 2px solid #000000;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px; }
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0); } }

@@ -1,3 +1,4 @@
+ var DEBUG = true;
  angular.module("static-include", []).directive('staticInclude', function($templateRequest, $compile) {
      return {
          restrict: 'A',
@@ -29,6 +30,11 @@
              templateUrl: 'templates/home.html',
              controller: 'homeController'
          })
+          .state('login', {
+             url: '/login',
+             templateUrl: 'templates/login.html',
+             controller: 'loginController'
+         })
          .state('monitor', {
              url: '/monitor',
              templateUrl: 'templates/preview.html',
@@ -50,7 +56,7 @@
              controller: 'arpeggiatorController'
          });
 
-     $urlRouterProvider.otherwise('/');
+     $urlRouterProvider.otherwise('/login');
 
 
 
@@ -75,7 +81,7 @@
          arpeggiator: false
      }
      $rootScope.connectDevice = function(deviceFunction) {
-         socket.emit("connectDevice", deviceFunction);
+         socket.emit("connectDevice", {value:deviceFunction,token:$rootScope.clientToken});
      };
 
      socket.on('connectDeviceClient', function(deviceFunction) {

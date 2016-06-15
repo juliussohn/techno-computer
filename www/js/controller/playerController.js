@@ -344,6 +344,18 @@
       	})
      });
 
+    socket.on('clientToken', function(token) {
+        console.log(token)
+        $rootScope.$apply(function(){
+             $rootScope.clientToken=token;
+        })
+     });
+
+
+
+
+      
+
 
       
 
@@ -383,9 +395,7 @@
      		$scope.analyser.fftSize = 128;
         var frequencyData = new Uint8Array($scope.analyser.frequencyBinCount);
 		$scope.analyser.getByteFrequencyData(frequencyData);
-		console.log(frequencyData)
 		var canvas = document.getElementById('visualiser');
-		console.log(canvas)
 		  var drawContext = canvas.getContext('2d');
 		  WIDTH = 300;
 		  HEIGHT = 160;
@@ -466,10 +476,11 @@
 
        
         $scope.visualiserInterval = $interval($scope.drawVisualizer, 10);
-
+socket.on('loginSuccessfulClient',function(){
+            console.log("login successful")
+        })
      $scope.changeBPM = function(BPM){
-     	  socket.emit('changeBPM', BPM, function(response){
-     	  });
+     	  socket.emit('changeBPM', {value: BPM,token:$rootScope.clientToken});
      	  if($scope.playing){
      	  	 $scope.resetBeat();
      	  }
@@ -489,12 +500,12 @@
      	}
      }
      $scope.play = function(){
-     	socket.emit('play', $scope.BPM);
+     	socket.emit('play',    {value: $scope.BPM ,token:$rootScope.clientToken});
      	$scope.playing = true;
      	$scope.resetBeat();
      };
       $scope.stop = function(){
-     	socket.emit('stop');
+     	socket.emit('stop' , {token:$rootScope.clientToken});
      	$scope.playing = false;
      	$interval.cancel($scope.beatInterval);
      };

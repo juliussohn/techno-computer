@@ -3,9 +3,11 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
+//var client = redis.createClient()
 
+//console.log(client)
 
-
+var clients = {};
 
 app.get('/', function(req, res){
   res.sendfile('www/index.html');
@@ -15,52 +17,82 @@ app.use(express.static(path.join(__dirname,'www')));
 
 
 http.listen(process.env.PORT || 5000, function(){
-  console.log('listening on *:3000');
+  console.log('listening on *:5000');
 });
 
 io.on('connection', function(socket){
-  //console.log('a user connected');
+  //console.log(socket);
 });
 
-
+var monitors = {};
 
 io.on('connection', function(socket){
+  var id = makeid();
+  socket.join(id);
+  io.to(id).emit('clientToken',id);
+ // console.log(id, "connected");
+
+  socket.on('login',function(token){
+   // console.log(socket.rooms,token);
+
+
+    //var roster = io.sockets.clients(token);
+    if(io.sockets.adapter.rooms[token]){
+      socket.join(token);
+      io.to(token).emit('loginSuccessfulClient');
+    }else{
+      socket.emit('loginFailedClient');
+    }
+
+
+
+    
+    
+  });
+
+
 
 
   socket.on('play',function(value){
-    io.emit('playClient', value);
+    console.log(value.token, "play")
+    console.log(id, "play");
+
+    io.to(value.token).emit('playClient', value.value);
   });
   socket.on('stop',function(value){
-    io.emit('stopClient', value);
+    io.to(value.token).emit('stopClient', value.value);
+    clients[value.token].emit('stopClient', value.value);
   });
   socket.on('changeBPM',function(value){
     console.log('changeBPM', value);
-    io.emit('changeBPMClient', value);
+    io.to(value.token).emit('changeBPMClient', value.value);
   });
   socket.on('changeSequence',function(value){
-    io.emit('changeSequenceClient', value);
+    io.to(value.token).emit('changeSequenceClient', value.value);
   });
   socket.on('changeFilter',function(value){
-    io.emit('changeFilterClient', value);
+    io.to(value.token).emit('changeFilterClient', value.value);
   });
   socket.on('changeFilterAmount',function(value){
-    io.emit('changeFilterAmountClient', value);
+    io.to(value.token).emit('changeFilterAmountClient', value.value);
   });
   socket.on('changeArpeggiatorOrientation',function(value){
-    io.emit('changeArpeggiatorOrientationClient', value);
+    io.to(value.token).emit('changeArpeggiatorOrientationClient', value.value);
   });
+
   socket.on('connectDevice',function(value){
-    io.emit('connectDeviceClient', value);
+    io.to(value.token).emit('connectDeviceClient', value.value);
   });
+
    socket.on('changeArpeggiatorPower',function(){
-    io.emit('changeArpeggiatorPowerClient');
+    io.to(value.token).emit('changeArpeggiatorPowerClient');
   });
 
   socket.on('changeArpeggiatorNoteOrder',function(value){
-    io.emit('changeArpeggiatorNoteOrderClient',value);
+    io.to(value.token).emit('changeArpeggiatorNoteOrderClient',value.value);
   });
    socket.on('changeOscillatorType',function(value){
-    io.emit('changeOscillatorTypeClient',value);
+    io.to(value.token).emit('changeOscillatorTypeClient',value.value);
   });
 
 
@@ -69,7 +101,7 @@ io.on('connection', function(socket){
 
 /*
   socket.on('changeSequencer', function(sequence){
-     io.emit('changeSequencerDesktop', sequence);
+     socket.emit('changeSequencerDesktop', sequence);
 	});
   
   socket.on('changeBPM', function(bpm){
@@ -116,3 +148,15 @@ io.emit('changedDeviceOrienation', { for: 'everyone' });
 io.emit('registerDevice', { for: 'everyone' });
 */
 
+
+
+function makeid()
+{
+    var text = "";
+    var possible = "0123456789";
+
+    for( var i=0; i < 4; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}

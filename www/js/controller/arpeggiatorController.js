@@ -55,22 +55,22 @@
 
 
      $scope.toggleArpeggiator = function(){
-     	 socket.emit('changeArpeggiatorPower');
+     	 socket.emit('changeArpeggiatorPower', {token:$rootScope.clientToken});
      	 $scope.arpeggiatorActivated = !$scope.arpeggiatorActivated;
      }
 
      $scope.changeNoteOrder = function(i){
      	$scope.noteOrder = $rootScope.chordOrders[i];
-     	socket.emit('changeArpeggiatorNoteOrder',i);
+     	socket.emit('changeArpeggiatorNoteOrder',{value: i,token:$rootScope.clientToken});
      }
 
      $scope.changeOscillatorType = function(type){
      		$scope.oscillatorType = type;
-     	     socket.emit('changeOscillatorType', type);
+     	     socket.emit('changeOscillatorType',{value: type,token:$rootScope.clientToken} );
 
      }
      $scope.rootNote = $scope.notes.C;
-     socket.emit('changeArpeggiatorOrientation', $scope.rootNote);
+     socket.emit('changeArpeggiatorOrientation', {value: $scope.rootNote,token:$rootScope.clientToken});
 
      angular.element($window).bind("deviceorientation", function(event) {
          $scope.$apply(function() {
@@ -83,7 +83,7 @@
 			  	if($scope.currentOrientation.alpha >= value.degree - half && $scope.currentOrientation.alpha < value.degree + 360/7 -half){
 			  		if(value != $scope.rootNote){
 			  				$scope.rootNote = value;
-			  			 socket.emit('changeArpeggiatorOrientation', $scope.rootNote);
+			  			 socket.emit('changeArpeggiatorOrientation', {value: $scope.rootNote,token:$rootScope.clientToken});
 
 			  		}
 			  		

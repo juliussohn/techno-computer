@@ -8,9 +8,12 @@
       * Redirect Desktop to Monitor
       * @type {Object}
       */
-     if (!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)) {
-         $state.go("monitor");
+     if(DEBUG == false){
+        if (!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)) {
+           $state.go("monitor");
+       }
      }
+     
 
      $scope.launchController = function(controllerName){
         if($rootScope.registeredDevices[controllerName] == false){

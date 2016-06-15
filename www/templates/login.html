@@ -1,0 +1,45 @@
+<div id="loginContainer">
+	<div class="displayContainer">
+		<p>Enter the code, you see on the montitor.</p>
+		<input type="hidden" ng-model="clientToken">
+		<div class="codeInputContainer" ng-class="{'error':error==true}">
+			<div class="char" ng-class="{'active': currentIndex == 0}" ng-bind="code[0]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-class="{'active': currentIndex == 1}" ng-bind="code[1]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-class="{'active': currentIndex == 2}" ng-bind="code[2]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-class="{'active': currentIndex == 3}" ng-bind="code[3]"></div>
+		</div>
+	</div>
+	<div class="codeKeyboard">
+		<div class="row">
+			<div class="numberButton" ng-click="enterNumber(1)"><div class="number">1</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(2)"><div class="number">2</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(3)"><div class="number">3</div></div>
+		</div>
+		<div class="row">
+			<div class="numberButton" ng-click="enterNumber(4)"><div class="number">4</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(5)"><div class="number">5</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(6)"><div class="number">6</div></div>
+		</div>
+		<div class="row">
+			<div class="numberButton" ng-click="enterNumber(7)"><div class="number">7</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(8)"><div class="number">8</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(9)"><div class="number">9</div></div>
+		</div>
+		<div class="row">
+			<div class="empty"></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="enterNumber(0)"><div class="number">0</div></div>
+			<div class="spacer"></div>
+			<div class="numberButton" ng-click="deleteNumber()"><div class="number">DEL</div></div>
+		</div>
+	</div>
+</div>
