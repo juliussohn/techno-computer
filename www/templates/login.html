@@ -2,7 +2,7 @@
 	<div class="displayContainer">
 		<p>Enter the code, you see on the montitor.</p>
 		<input type="hidden" ng-model="clientToken">
-		<div class="codeInputContainer" ng-class="{'error':error==true}">
+		<div class="codeInputContainer" ng-class="{'error':error==true, 'success':success==true}">
 			<div class="char" ng-class="{'active': currentIndex == 0}" ng-bind="code[0]"></div>
 			<div class="spacer"></div>
 			<div class="char" ng-class="{'active': currentIndex == 1}" ng-bind="code[1]"></div>

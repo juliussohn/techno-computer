@@ -3,16 +3,24 @@
 	<!--div ng-click="play()">play</div>
 	<div ng-click="stop()">stop</div>
 	<input type="number" value="128" ng-model="BPM"-->
+	<div class="logo">
+		TECHNO<br>COMPUTER
+	</div>
+	<div ng-class="{'active':recording}" ng-click="toggleRecord()" class="recordButton">
+		<i class="fa fa-circle" aria-hidden="true"></i>
+	</div>
 	<div ng-class="{'active':playing}" ng-click="togglePlay()" class="playButton">
-		
-		<img src="/img/play.svg" alt="">
+		<i class="fa fa-play" aria-hidden="true"></i>
 	</div>
 	<div class="BPMSelect">
 		<div class="stepper">
 			<div class="up" ng-click="stepBPM(1)"><img src="/img/up.svg" alt=""></div>
 			<div class="down" ng-click="stepBPM(-1)"><img src="/img/down.svg" alt=""></div>
 		</div>
-	{{BPM}}<small>BPM {{$root.clientToken}}</small></div>
+	{{BPM}}<small>BPM </small></div>
+		<div class="infoButton last">CREDITS</div>
+
+	<div class="infoButton">HELP</div>
 </header>
 <div class="deviceContainer">
 	<div class="deviceColumn monitor">
@@ -32,6 +40,16 @@
 				Monitor: this device
 			</div>
 			
+		</div>
+		<h2>Device Code</h2>
+		<div class="deviceCode">
+			<div class="char" ng-bind="$root.clientToken[0]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[1]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[2]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[3]"></div>
 		</div>
 		<h2>Visualiser</h2>
 		<div class="visualiserContainer">

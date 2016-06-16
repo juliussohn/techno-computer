@@ -14,15 +14,15 @@
              $scope.authenticate();
          }
 
-     }
+     };
 
      $scope.deleteNumber = function() {
          if ($scope.currentIndex > 0) {
              $scope.currentIndex--;
              $scope.code[$scope.currentIndex] = '';
          }
+     };
 
-     }
      $scope.authenticate = function() {
          $scope.clientToken = $scope.code.join('');
          console.log($scope.clientToken);
@@ -39,17 +39,24 @@
      	$timeout($scope.clearCode , 820);
      	
          
-     })
+     });
+
+     $scope.authSuccessful = function(){
+     	$state.go('home');
+     };
 
      socket.on('loginSuccessfulClient', function() {
+     	$scope.$apply(function(){
+         	$scope.success = true;
+     	 });
          $rootScope.clientToken = $scope.clientToken;
-         $state.go('home')
-     })
+         $timeout( $scope.authSuccessful, 820); 
+     });
 
      $scope.clearCode = function() {
          $scope.code = ['', '', '', ''];
          $scope.currentIndex = 0;
          $scope.error = false;
-     }
+     };
 
  });
