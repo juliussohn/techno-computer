@@ -2,7 +2,7 @@
   * Controler for Arpeggiator
   * @type {Object}
   */
- app.controller('arpeggiatorController', function($rootScope, $scope, $interval, $window) {
+ app.controller('arpeggiatorController', function($rootScope, $state,$scope, $interval, $window) {
      /**
       * Watch device orientation
       * @type {Object}
@@ -10,6 +10,9 @@
  document.ontouchmove = function(event) {
      event.preventDefault();
  }
+  if(!$rootScope.clientToken){
+           $state.go('login')
+       }
       var half = (360/7)/2;
       $scope.noteOrder = $rootScope.chordOrders[0];
       $scope.oscillatorType = 'sinus';

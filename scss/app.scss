@@ -523,6 +523,30 @@ h1 {
     }
 }
 
+.turnDeviceOverlay{
+    position: fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background:#424242;
+    z-index: 999;
+    @include center-content;
+    display:none;
+    text-align:center;
+    div{
+        width: 100px;
+    }
+    img{
+        width: 100%;
+    }
+}
+@media (orientation: portrait) {
+    .turnDeviceOverlay{
+        display: flex;
+    }
+}
+
 
 
 

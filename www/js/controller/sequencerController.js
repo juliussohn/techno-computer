@@ -2,7 +2,7 @@
   * Controler for Sequencer
   * @type {Object}
   */
- app.controller('sequencerController', function($scope, $rootScope, $interval, $window) {
+ app.controller('sequencerController', function($scope, $state,$rootScope, $interval, $window) {
      var steps = 8;
      $scope.bpm = 128;
      $scope.currentStep = 0;
@@ -10,6 +10,11 @@
      $scope.bpmToSeconds = function(bpm) {
          return (60000 / bpm) / 4;
      };
+       
+       if(!$rootScope.clientToken){
+           $state.go('login')
+       }
+     
  document.ontouchmove = function(event) {
      event.preventDefault();
  }

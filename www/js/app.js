@@ -26,24 +26,19 @@
      //$locationProvider.html5Mode(true);
      $stateProvider
          .state('home', {
-             url: '/',
+             url: '/select-device',
              templateUrl: 'templates/home.html',
              controller: 'homeController'
          })
           .state('login', {
-             url: '/login',
+             url: '/connect',
              templateUrl: 'templates/login.html',
              controller: 'loginController'
          })
          .state('monitor', {
-             url: '/monitor',
+             url: '/',
              templateUrl: 'templates/preview.html',
              controller: 'playerController'
-         })
-         .state('recorder', {
-             url: '/recorder',
-             templateUrl: 'templates/recorder.html',
-             controller: 'recorderController'
          })
          .state('sequencer', {
              url: '/sequencer',
@@ -56,7 +51,7 @@
              controller: 'arpeggiatorController'
          });
 
-     $urlRouterProvider.otherwise('/login');
+     $urlRouterProvider.otherwise('/');
 
 
 

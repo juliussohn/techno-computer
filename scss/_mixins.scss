@@ -31,3 +31,8 @@
         border-radius: 2px;
     }
 }
+@mixin center-content{
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}

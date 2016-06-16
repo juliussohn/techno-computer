@@ -393,6 +393,28 @@ h1 {
     border: 1px solid red !important;
     box-shadow: 0px 2px 19px 0px rgba(255, 0, 0, 0.54), 0px 0px 2px 0px red, 0px 0px 6px 0px red, 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.36), inset 0px 0px 0px 3px rgba(255, 255, 255, 0.24) !important; }
 
+.turnDeviceOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #424242;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  text-align: center; }
+  .turnDeviceOverlay div {
+    width: 100px; }
+  .turnDeviceOverlay img {
+    width: 100%; }
+
+@media (orientation: portrait) {
+  .turnDeviceOverlay {
+    display: flex; } }
+
 .deviceCode {
   display: flex;
   justify-content: stretch; }
