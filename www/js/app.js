@@ -30,6 +30,11 @@
              templateUrl: 'templates/home.html',
              controller: 'homeController'
          })
+        .state('intro', {
+             url: '/intro',
+             templateUrl: 'templates/intro.html',
+             controller: 'introController'
+         })
           .state('login', {
              url: '/connect',
              templateUrl: 'templates/login.html',

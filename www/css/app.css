@@ -415,6 +415,12 @@ h1 {
   .turnDeviceOverlay {
     display: flex; } }
 
+#introContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .deviceCode {
   display: flex;
   justify-content: stretch; }
