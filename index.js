@@ -9,9 +9,19 @@ var path = require('path');
 
 var clients = {};
 
-app.get('*', function(req, res){
-  res.sendfile('www/index.html');
+
+app.use("/js", express.static(__dirname + "/www/js"));
+app.use("/img", express.static(__dirname + "/www/img"));
+app.use("/css", express.static(__dirname + "/www/css"));
+app.use("/templates", express.static(__dirname + "/www/templates"));
+app.use("/fonts", express.static(__dirname + "/www/fonts"));
+app.use("/samples", express.static(__dirname + "/www/samples"));
+
+
+app.get('/*', function(req, res) { 
+  res.sendFile(__dirname + '/www/index.html')
 });
+
 
 app.use(express.static(path.join(__dirname,'www')));
 
