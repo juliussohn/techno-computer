@@ -23,7 +23,7 @@
 
 
  app.config(function($urlRouterProvider, $stateProvider) {
-     //$locationProvider.html5Mode(true);
+     $locationProvider.html5Mode(true);
      $stateProvider
          .state('home', {
              url: '/select-device',

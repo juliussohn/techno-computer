@@ -9,7 +9,7 @@ var path = require('path');
 
 var clients = {};
 
-app.get('/', function(req, res){
+app.get('*', function(req, res){
   res.sendfile('www/index.html');
 });
 
