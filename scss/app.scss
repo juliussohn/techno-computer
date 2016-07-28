@@ -9,6 +9,10 @@
 @import 'mixins';
 $instruments: (kick #6DA9FF) (snare #916ce9) (hhClosed #F9AA55) (hhOpen #FF6DB0);
 
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 .console {
     background: rgba(0, 0, 0, 0.9);
     position: absolute;

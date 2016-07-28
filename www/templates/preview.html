@@ -4,7 +4,7 @@
 	<div ng-click="stop()">stop</div>
 	<input type="number" value="128" ng-model="BPM"-->
 	<div class="logo">
-		TECHNO<br>COMPUTER
+		TECHNO<br>COMPUTER<br><span>BETA</span>
 	</div>
 	<!--div ng-class="{'active':recording}" ng-click="toggleRecord()" class="recordButton">
 		<i class="fa fa-circle" aria-hidden="true"></i>
@@ -23,7 +23,7 @@
 	<!--div class="infoButton">HELP</div-->
 </header>
 
-<div class="tutorialContainer" ng-hide="!showTutorial">
+<div class="tutorialContainer" ng-show="!showTutorial">
 	<div class="top">
 		<div class="content">
 		<h1>Hey there!</h1>
