@@ -1,4 +1,4 @@
- var DEBUG = true;
+ var DEBUG = false;
  angular.module("static-include", []).directive('staticInclude', function($templateRequest, $compile) {
      return {
          restrict: 'A',
@@ -19,7 +19,7 @@
 
 
  var socket = io();
- var app = angular.module('keyframer', ['ui.router', 'hmTouchEvents', 'static-include']);
+ var app = angular.module('keyframer', ['ui.router', 'hmTouchEvents', 'static-include','ngAnimate']);
 
 
  app.config(function($urlRouterProvider, $stateProvider, $locationProvider) {
@@ -66,20 +66,26 @@
  app.run(function($rootScope) {
 
      $rootScope.chordOrders = [
+         // [0, -1, -1, -1],
          [0, 2, 1, 2],
-         [1, -1, 2, 0],
-         [1, -1, 1, -1],
+         //[1, -1, 2, 0],
+        
          [0, 1, 0, 2],
          [0, 1, 2, 1],
-         [0, 1, 2, 1],
+         //[0, 1, 2, 1],
          [0, 0, 0, 0],
-         [0, 1, 2, 2],
+
+          [0, -1, 0, -1]
+         //[0, 1, 2, 2],
      ];
+
+    $rootScope.tutorialVisible = true;
      $rootScope.registeredDevices = {
          monitor: false,
          sequencer: false,
          arpeggiator: false
-     }
+     };
+     
      $rootScope.connectDevice = function(deviceFunction) {
          socket.emit("connectDevice", {value:deviceFunction,token:$rootScope.clientToken});
      };
@@ -87,6 +93,7 @@
      socket.on('connectDeviceClient', function(deviceFunction) {
 
          $rootScope.$apply(function() {
+             $rootScope.tutorialVisible = false;
              $rootScope.registeredDevices[deviceFunction] = true;
          })
 

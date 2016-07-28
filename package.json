@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "start" : "node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "main-bower-files": "^2.9.0"
   },
   "dependencies": {
+    "angular": "^1.5.7",
     "express": "^4.13.4",
     "socket.io": "^1.4.6"
   }

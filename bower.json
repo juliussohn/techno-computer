@@ -16,9 +16,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.6",
+      "angular": "^1.5.6",
     "angular-ui-router": "^0.3.0",
     "AngularHammer": "ryanmullins-angular-hammer#^2.1.10",
-
+    "angular-animate": "^1.5.7",
+    "tuna": "https://github.com/Theodeus/tuna.git"
   }
 }

@@ -91,10 +91,11 @@ io.on('connection', function(socket){
   });
 
   socket.on('connectDevice',function(value){
+    console.log(value);
     io.to(value.token).emit('connectDeviceClient', value.value);
   });
 
-   socket.on('changeArpeggiatorPower',function(){
+   socket.on('changeArpeggiatorPower',function(value){
     io.to(value.token).emit('changeArpeggiatorPowerClient');
   });
 

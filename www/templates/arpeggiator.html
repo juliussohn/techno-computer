@@ -35,12 +35,9 @@
 		<button hm-tap="changeOscillatorType('sawtooth')">sawtooth</button><br-->
 	</div>
 	<div class="noteContainer" >
-	<div class="lampBig" ng-class="{'active' : arpeggiatorActivated}" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) translate(-50%, -50%)'}">
-		<div class="l1">
-			<div class="l2">
-				<div class="l3"></div>
-			</div>
-		</div>
+	<div class="playPause" ng-class="{'active' : arpeggiatorActivated}" >
+		<img src="/img/arp_play.svg" class="play" ng-class="{'ng-hide':arpeggiatorActivated}" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) '}">
+		<img src="/img/arp_pause.svg" class="pause" ng-class="{'ng-hide': !arpeggiatorActivated}" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) '}">
 	</div>
 		<img class="base" src="/img/inset_base.svg" >
 		<img hm-tap="toggleArpeggiator()" class="tick" src="/img/center-tick.svg" ng-style="{'-webkit-transform': 'rotate('+currentOrientation.alpha+'deg) translate(-50%, -50%)'}">

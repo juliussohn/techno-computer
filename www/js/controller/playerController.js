@@ -1,4 +1,4 @@
- app.controller('playerController', function($scope, $interval, $window, $rootScope) {
+ app.controller('playerController', function($scope, $interval, $window, $rootScope, $state) {
 
      var steps = 8;
      $scope.BPM = 128;
@@ -8,8 +8,29 @@
          return (60000 / bpm) / 4;
      }
 
-     $scope.arpeggiatorActive = false;
 
+     if(DEBUG == false){
+        if (!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)) {
+           $state.go("monitor");
+       }else if(!$rootScope.clientToken){
+          $state.go('login')
+       }
+     }
+     
+
+     $scope.launchController = function(controllerName){
+        if($rootScope.registeredDevices[controllerName] == false){
+            $state.go(controllerName);
+        }
+     }
+
+
+
+
+
+
+     $scope.arpeggiatorActive = false;
+     $scope.showTutorial=true;
 
      $scope.chords = {
      	'C' : [261.63, 329.63, 392],
@@ -32,7 +53,7 @@
      }
 
      $rootScope.connectDevice("monitor");
-
+     $rootScope.registeredDevices["monitor"] = true;
 
 
      /**
@@ -56,6 +77,18 @@
      		// create web audio api context
 			 var now = $scope.audioCtx.currentTime;
 
+             var tuna = new Tuna($scope.audioCtx);
+
+            $scope.synth.delay =  new tuna.Delay({
+                feedback: 0.6 ,    //0 to 1+
+                delayTime: 100,    //how many milliseconds should the wet signal be delayed?
+                wetLevel: 0.25,    //0 to 1+
+                dryLevel: 1,       //0 to 1+
+                cutoff: 2000,      //cutoff frequency of the built in lowpass-filter. 20 to 22050
+                bypass: 0
+            });
+
+
 			// create Oscillator node
 			$scope.synth.oscillator = $scope.audioCtx.createOscillator();
 			$scope.synth.gainNode = $scope.audioCtx.createGain();
@@ -63,16 +96,31 @@
 
 			
 
-			$scope.synth.oscillator.type = $scope.synth.type;
-			$scope.synth.oscillator.frequency.value = freq; // value in hertz
+           $scope.synth.oscillator.type = $scope.synth.type;
+			//$scope.synth.oscillator.type ="triangle";
+			
+            $scope.synth.oscillator.frequency.value = freq; // value in hertz
+
+
+           //s $scope.synth.delay
+
+            
+
+          
 
 
 			$scope.synth.gainNode.gain.linearRampToValueAtTime(0.8,$scope.audioCtx.currentTime + 0.1);
 			$scope.synth.gainNode.gain.linearRampToValueAtTime(0,$scope.audioCtx.currentTime + 0.2);
 
-			$scope.synth.oscillator.connect($scope.synth.gainNode);
-			$scope.synth.gainNode.connect($scope.audioCtx.destination);
+			//$scope.synth.oscillator.connect($scope.synth.gainNode);
+			//$scope.synth.gainNode.connect($scope.audioCtx.destination);
+     
+            $scope.synth.oscillator.connect($scope.synth.gainNode);
+            $scope.synth.gainNode.connect($scope.synth.delay);       //
 			
+           // $scope.synth.oscillator.connect($scope.synth.delay);
+            $scope.synth.delay.connect($scope.audioCtx.destination)
+
 			now = $scope.audioCtx.currentTime;
 			$scope.synth.oscillator.start();
          	$scope.synth.oscillator.stop(now + 0.2);
@@ -354,6 +402,8 @@
 
 
 
+
+
       
 
 
@@ -434,10 +484,11 @@
       */
 
      $scope.playBeat = function() {
-
      	 if($scope.currentStep % 2 == false && $scope.arpeggiatorActive && $scope.chordOrder[ Math.ceil($scope.currentStep/2)] > -1){
-     	 	console.log(Math.ceil($scope.currentStep/2));
-     	 	 $scope.synth.play( $scope.chord[$scope.chordOrder[ Math.ceil($scope.currentStep/2)]]);
+     	 	console.log($scope.chords["E"][0]);
+
+             $scope.synth.play( $scope.chord[$scope.chordOrder[ Math.ceil($scope.currentStep/2)]]);
+     	 	// $scope.synth.play( $scope.chords["E"][$scope.chordOrder[ Math.ceil($scope.currentStep/2)]]);
      	 }
      	
      	 //console.log($scope.chord[$scope.chordOrder[$scope.currentStep]])
@@ -477,7 +528,9 @@
        
         $scope.visualiserInterval = $interval($scope.drawVisualizer, 10);
 socket.on('loginSuccessfulClient',function(){
-            console.log("login successful")
+             $scope.$apply(function(){
+             $scope.showTutorial=false;
+        })
         })
      $scope.changeBPM = function(BPM){
      	  socket.emit('changeBPM', {value: BPM,token:$rootScope.clientToken});

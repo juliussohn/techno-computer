@@ -8,7 +8,7 @@
       * Redirect Desktop to Monitor
       * @type {Object}
       */
-    DEBUG = false;
+    DEBUG = true;
      if(DEBUG == false){
         if (!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)) {
            $state.go("monitor");

@@ -8,7 +8,7 @@
 		 height: 70px;
 		 line-height: 65px;
 		 text-align: center;
-		  font-family: "VCR OSD MONO";
+		  font-family: "vcr_osd_monoregular";
 		  font-size: 2em;
 	}
 	.spacer{
@@ -241,7 +241,7 @@ box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.50), 0px 2px 4px 0px rgba(0,0,0,0.50), 
             border-radius: 3px;
             padding: 20px 0;
             text-align: center;
-            font-family: "VCR OSD MONO";
+            font-family: "vcr_osd_monoregular";
             text-transform: uppercase;
 
             /* MONITOR - THIS DEVIC: */
@@ -418,13 +418,13 @@ box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.50), 0px 2px 4px 0px rgba(0,0,0,0.50), 
                         position: relative;
                         z-index: 9;
                         transition: all .2s;
-                        height: 20px;
-                        width: 20px;
+                        height: 18px;
+                        width: 18px;
                         border-radius: 100%;
-                        background: #565656;
+                        background: #222222;
                         border: 1px solid #4e4e4e;
                         box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24);
-                        box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(#FFFA00, 0), 0px 0px 6px 0px rgba(#8FDD78, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
+                        box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(#FFFA00, 0), 0px 0px 6px 0px rgba(#8FDD78, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -433,21 +433,21 @@ box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.50), 0px 2px 4px 0px rgba(0,0,0,0.50), 
                     }
 
                     .l2 {
-                        height: 18px;
-                        width: 18px;
+                        height: 16px;
+                        width: 16px;
                         border-radius: 100%;
-                        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.9) 100%);
+                        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.6) 100%);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                     }
 
                     .l3 {
-                        height: 18px;
-                        width: 18px;
+                        height: 16px;
+                        width: 16px;
                         border-radius: 100%;
                         opacity: 0.54;
-                        background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.5) 100%);
+                        background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.2) 100%);
                     }
                 }
             }

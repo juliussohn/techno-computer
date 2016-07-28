@@ -10,6 +10,18 @@
   padding: 10px; }
 
 @font-face {
+  font-family: 'drone_ranger_01oblique';
+  src: url("/fonts/dronerangeroblique-webfont.woff2") format("woff2"), url("/fonts/dronerangeroblique-webfont.woff") format("woff"), url("/fonts/dronerangeroblique.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'vcr_osd_monoregular';
+  src: url("/fonts/vcr_osd_mono-webfont.woff2") format("woff2"), url("/fonts/vcr_osd_mono-webfont.woff") format("woff"), url("/fonts/vcr_osd_mono.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
   font-family: "DroneRangerOblique";
   src: url("/fonts/DroneRangerOblique.ttf"); }
 
@@ -257,6 +269,22 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100; }
+  .noteContainer .playPause {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 50px;
+    position: relative;
+    text-align: center;
+    pointer-events: none; }
+    .noteContainer .playPause img {
+      width: 25px;
+      margin-top: 7px; }
+      .noteContainer .playPause img.play {
+        margin-left: 3px; }
+      .noteContainer .playPause img.pause {
+        margin-left: -1px; }
 
 .arpeggiatorContainer {
   height: 100vh; }
@@ -436,7 +464,7 @@ h1 {
     height: 70px;
     line-height: 65px;
     text-align: center;
-    font-family: "VCR OSD MONO";
+    font-family: "vcr_osd_monoregular";
     font-size: 2em; }
     .deviceCode .char:before {
       content: '';
@@ -645,7 +673,7 @@ div.visualiserContainer {
       border-radius: 3px;
       padding: 20px 0;
       text-align: center;
-      font-family: "VCR OSD MONO";
+      font-family: "vcr_osd_monoregular";
       text-transform: uppercase;
       /* MONITOR - THIS DEVIC: */
       font-size: 14px;
@@ -783,31 +811,31 @@ div.visualiserContainer {
             position: relative;
             z-index: 9;
             transition: all .2s;
-            height: 20px;
-            width: 20px;
+            height: 18px;
+            width: 18px;
             border-radius: 100%;
-            background: #565656;
+            background: #222222;
             border: 1px solid #4e4e4e;
             box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24);
-            box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(255, 250, 0, 0), 0px 0px 6px 0px rgba(143, 221, 120, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.24), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
+            box-shadow: 0px 2px 19px 0px rgba(2, 255, 38, 0), 0px 0px 2px 0px rgba(255, 250, 0, 0), 0px 0px 6px 0px rgba(143, 221, 120, 0), 0px 2px 4px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1), inset 0px 0px 0px 3px rgba(255, 255, 255, 0);
             display: flex;
             align-items: center;
             justify-content: center;
             /* Oval 27: */ }
           .monitorContainer .sequencerPattern .instrument .steps .lamp .l2 {
-            height: 18px;
-            width: 18px;
+            height: 16px;
+            width: 16px;
             border-radius: 100%;
-            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.9) 100%);
+            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 12%, rgba(255, 255, 255, 0.6) 100%);
             display: flex;
             align-items: center;
             justify-content: center; }
           .monitorContainer .sequencerPattern .instrument .steps .lamp .l3 {
-            height: 18px;
-            width: 18px;
+            height: 16px;
+            width: 16px;
             border-radius: 100%;
             opacity: 0.54;
-            background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.5) 100%); }
+            background-image: linear-gradient(-119deg, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.2) 100%); }
   .monitorContainer .arpeggiatorPattern {
     /* Rectangle 228: */
     font-family: "VCR OSD MONO";
@@ -944,3 +972,81 @@ div.visualiserContainer {
     transform: translate3d(-4px, 0, 0); }
   40%, 60% {
     transform: translate3d(4px, 0, 0); } }
+
+.tutorialContainer {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  transition: all 1.5s;
+  transition-delay: .5s;
+  background: rgba(0, 0, 0, 0.8); }
+  .tutorialContainer.ng-hide-add {
+    background: rgba(0, 0, 0, 0.8); }
+    .tutorialContainer.ng-hide-add .top {
+      transform: translateY(0); }
+    .tutorialContainer.ng-hide-add .bottom {
+      transform: translateY(0); }
+  .tutorialContainer.ng-hide-add-active {
+    background: transparent; }
+    .tutorialContainer.ng-hide-add-active .top {
+      transform: translateY(-120%); }
+    .tutorialContainer.ng-hide-add-active .bottom {
+      transform: translateY(100%); }
+  .tutorialContainer .top {
+    background-image: linear-gradient(-180deg, #474747 0%, #2C2C2C 100%);
+    height: 60vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all 0.5s cubic-bezier(0.71, 0.13, 0.63, 0.88);
+    transition-delay: .5s; }
+    .tutorialContainer .top:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: black;
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.11); }
+    .tutorialContainer .top .content {
+      width: 600px;
+      margin: 0 auto;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -300px; }
+      .tutorialContainer .top .content h1 {
+        text-align: left;
+        font-size: 44px; }
+      .tutorialContainer .top .content p {
+        line-height: 1.4;
+        font-size: 20px;
+        width: 80%;
+        margin: 30px 0; }
+      .tutorialContainer .top .content .char {
+        font-size: 50px;
+        height: 140px;
+        line-height: 140px; }
+      .tutorialContainer .top .content .deviceCode {
+        position: relative;
+        z-index: 99;
+        margin-bottom: -70px; }
+  .tutorialContainer .bottom {
+    transition: all 0.5s cubic-bezier(0.71, 0.13, 0.63, 0.88);
+    transition-delay: .5s;
+    background-image: linear-gradient(-180deg, #2C2C2C 0%, #242424 100%);
+    height: 40vh;
+    position: fixed;
+    bottom: 0;
+    width: 100%; }
+    .tutorialContainer .bottom:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 2px;
+      background: black;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.11); }

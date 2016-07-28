@@ -10,7 +10,7 @@
  document.ontouchmove = function(event) {
      event.preventDefault();
  }
-  if(!$rootScope.clientToken){
+        if(!$rootScope.clientToken && DEBUG == false){
            $state.go('login')
        }
       var half = (360/7)/2;
@@ -58,7 +58,7 @@
 
 
      $scope.toggleArpeggiator = function(){
-     	 socket.emit('changeArpeggiatorPower', {token:$rootScope.clientToken});
+     	 socket.emit('changeArpeggiatorPower', {value: !$scope.arpeggiatorActivated , token:$rootScope.clientToken});
      	 $scope.arpeggiatorActivated = !$scope.arpeggiatorActivated;
      }
 

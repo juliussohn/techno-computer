@@ -21,6 +21,31 @@ $instruments: (kick #6DA9FF) (snare #916ce9) (hhClosed #F9AA55) (hhOpen #FF6DB0)
     padding: 10px;
 }
 
+
+@font-face {
+    font-family: 'drone_ranger_01oblique';
+    src: url('/fonts/dronerangeroblique-webfont.woff2') format('woff2'),
+         url('/fonts/dronerangeroblique-webfont.woff') format('woff'),
+         url('/fonts/dronerangeroblique.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'vcr_osd_monoregular';
+    src: url('/fonts/vcr_osd_mono-webfont.woff2') format('woff2'),
+         url('/fonts/vcr_osd_mono-webfont.woff') format('woff'),
+         url('/fonts/vcr_osd_mono.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 @font-face {
     font-family: "DroneRangerOblique";
     src: url("/fonts/DroneRangerOblique.ttf");
@@ -347,6 +372,26 @@ h1 {
         transform: translate(-50%, -50%);
         z-index: 100;
     }
+    .playPause{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100; 
+        width: 50px;
+        position:relative;
+        text-align: center;
+        pointer-events: none;
+        img{
+            &.play{
+                margin-left: 3px;
+            }
+              &.pause{
+                margin-left: -1px;
+            }
+            width: 25px;
+            margin-top: 7px;
+        }
+    }
 }
 
 
@@ -562,3 +607,4 @@ h1 {
 
 @import 'components/monitor';
 @import 'components/login';
+@import 'components/tutorial';

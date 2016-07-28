@@ -22,6 +22,29 @@
 
 	<div class="infoButton">HELP</div>
 </header>
+
+<div class="tutorialContainer" ng-hide="!showTutorial">
+	<div class="top">
+		<div class="content">
+		<h1>Hey there!</h1>
+
+			<p>additionally to this browser window, PLease Open techno.computer on two smartphones and enter the code shown below.
+Choose the arpeggiator on one of the devices and the sequencer on the other one.</p>
+<div class="deviceCode">
+			<div class="char"  ng-bind="$root.clientToken[0]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[1]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[2]"></div>
+			<div class="spacer"></div>
+			<div class="char" ng-bind="$root.clientToken[3]"></div>
+		</div>
+		</div>
+
+	</div>
+	<div class="bottom"></div>
+</div>
+
 <div class="deviceContainer">
 	<div class="deviceColumn monitor">
 		<div class="deviceStatus" ng-class="{'active':$root.registeredDevices.monitor}">
