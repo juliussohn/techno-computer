@@ -39,7 +39,11 @@ var monitors = {};
 io.on('connection', function(socket){
   var id = makeid();
   socket.join(id);
-  io.to(id).emit('clientToken',id);
+
+  socket.on('clientLoaded',function(){
+	  io.to(id).emit('clientToken',id);
+  })
+
  // console.log(id, "connected");
 
   socket.on('login',function(token){

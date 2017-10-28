@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "gulp build"
   },
   "author": "",
   "license": "ISC",
